@@ -4,23 +4,38 @@ import java.util.Random;
 public class Test {
 
     public static void main(String[] args) {
-        int lenght = 1000;
+        int n = Integer.parseInt(args[0]); //Il valore n specificato da linea di comando;
+        int lenght = n;
         int[] array = new int[lenght];
 
-        for (int i = 0; i < lenght; i++) {
-            Random rn = new Random();
-            int random = rn.nextInt(100) ;
-            array[i] = random;
+        if (args[1].equals("A")) { // Tipologia A. sequenze decrescenti contenenti i valori interi da n a 1;
+            for (int i = 0; i < lenght; i++) {
+                array[i] = n;
+                n--;
+            }
+
+        }
+        if (args[1].equals("B")){ // Tipologia B. sequenze di n numeri casuali.
+            for (int i = 0; i < lenght; i++) {
+                Random rn = new Random();
+                int random = rn.nextInt(lenght) ;
+                array[i] = random;
+            }
+        }
+        else {
+            // ECCEZIONE: tipologia di input non corretta
         }
         System.out.println(Arrays.toString(array));
-        System.out.println(check(array)); //stampa false
+        System.out.println(check(array));             //stampa false
+
         MergeSort.mergeSort(array,0,array.length-1);
+
         System.out.println(Arrays.toString(array));
-        System.out.println(check(array)); //stampa true
+        System.out.println(check(array));             //stampa true
     }
 
     /**
-     * verifica sequenzialmente se l'array e' correttamente ordinato
+     * Metodo che verifica che l’output sia corretto, ovvero che rispetta l’ordine crescente
      * @param array
      * @return
      */
