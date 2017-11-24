@@ -27,10 +27,13 @@ public class Test {
     static boolean check(int[] array) {
         boolean ans = true;
         for (int i = 0; i < array.length-1; i++){
-            if (array[i] < array[i + 1]) {
+            if (array[i] <= array[i + 1]) {
                 ans = true;
             }
-            else ans = false;
+            else {
+                ans = false;
+                break;
+            }
         }
         return ans;
     }

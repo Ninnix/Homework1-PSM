@@ -1,7 +1,7 @@
 public class MergeSort {
 
     /**
-     * Versione del mergesort completamente seriale
+     * Versione del mergesort completamente sequenziale
      * @param array
      * @param low
      * @param high
@@ -16,7 +16,7 @@ public class MergeSort {
     }
 
     /**
-     * implementazione del merge seriale
+     * implementazione del merge sequenziale
      * @param array
      * @param low
      * @param middle
