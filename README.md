@@ -7,7 +7,9 @@ mergesort parallelo presentato ed analizzato in classe. L’implementazione deve
 di Java e deve contenere tre versioni dell’algoritmo:
 
 • mergesort sequenziale;
+
 • mergesort parallelo basato su merge sequenziale;
+
 • mergesort parallelo basato su merge parallelo.
 
 Input ed output. Il programma deve essere testato su sequenze di n interi, considerando diversi valori di n e due
