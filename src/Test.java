@@ -1,7 +1,10 @@
 import java.util.Arrays;
 import java.util.Random;
 
+import static java.lang.System.out;
+
 public class Test {
+
 
     public static void main(String[] args) {
         int n = Integer.parseInt(args[0]); //Il valore n specificato da linea di comando;
@@ -15,7 +18,7 @@ public class Test {
             }
 
         }
-        if (args[1].equals("B")){ // Tipologia B. sequenze di n numeri casuali.
+        else if (args[1].equals("B")){ // Tipologia B. sequenze di n numeri casuali.
             for (int i = 0; i < lenght; i++) {
                 Random rn = new Random();
                 int random = rn.nextInt(lenght) ;
@@ -25,13 +28,20 @@ public class Test {
         else {
             // ECCEZIONE: tipologia di input non corretta
         }
-        System.out.println(Arrays.toString(array));
-        System.out.println(check(array));             //stampa false
+        out.println(Arrays.toString(array));
 
-        MergeSort.mergeSort(array,0,array.length-1);
+        /*if (args[2].equals("S")){
+            mergesortSeriale(array, 0, array.length);
+        }
+        else if (args[2].equals("PS")){
+            mergesortParallelo(array, 0, array.length);
+        }*/
+        int[] a1 = array;
+        int[] a2 = array;
+        mergesortParallelo(a1, 0, array.length);
+        mergesortSeriale(a2, 0, array.length);
 
-        System.out.println(Arrays.toString(array));
-        System.out.println(check(array));             //stampa true
+
     }
 
     /**
@@ -52,5 +62,36 @@ public class Test {
         }
         return ans;
     }
+
+    /**
+     * Esegue il mergesort totalmente seriale
+     * @param array
+     * @param low
+     * @param high
+     */
+    static void mergesortSeriale(int[]array, int low, int high){
+        long inizio = System.currentTimeMillis();
+        MergeSort.mergeSort(array,0,array.length);
+        long fine = System.currentTimeMillis();
+        out.println(Arrays.toString(array));
+        out.println(check(array));
+        out.println("Il mergesort seriale ha impiegato: " +(fine-inizio)+
+                " millisecondi per ordinare " + array.length + " numeri \n" );
+    }
+
+    static void mergesortParallelo(int[]array, int low, int high){
+        ParallelMerge sort = new ParallelMerge(array, low, high);
+        long inizio = System.currentTimeMillis();
+        ParallelMerge.fjPool.invoke(sort);
+        long fine = System.currentTimeMillis();
+        out.println(Arrays.toString(array));
+        out.println(check(array));
+        out.println("Il mergesort parallelo con funzione di merge seriale ha impiegato: " +(fine-inizio)+
+                " millisecondi per ordinare " + array.length + " numeri \n" );
+
+
+    }
+
+
 
 }
