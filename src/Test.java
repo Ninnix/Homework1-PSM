@@ -28,20 +28,12 @@ public class Test {
         else {
             // ECCEZIONE: tipologia di input non corretta
         }
-        out.println(Arrays.toString(array));
+        out.println(Arrays.toString(array)); // stampiamo l'array creata
 
-        /*if (args[2].equals("S")){
-            mergesortSeriale(array, 0, array.length);
-        }
-        else if (args[2].equals("PS")){
-            mergesortParallelo(array, 0, array.length);
-        }*/
-        int[] a1 = array;
-        int[] a2 = array;
-        mergesortParallelo(a1, 0, array.length);
-        mergesortSeriale(a2, 0, array.length);
-
-
+        int[] a1 = array; //array del mergesort sequenziale
+        int[] a2 = array; //array del mergesort parallelo con funzione di merge seriale
+        benchS(a1, 0, array.length);
+        benchPS(a2, 0, array.length);
     }
 
     /**
@@ -64,12 +56,12 @@ public class Test {
     }
 
     /**
-     * Esegue il mergesort totalmente seriale
+     *
      * @param array
      * @param low
      * @param high
      */
-    static void mergesortSeriale(int[]array, int low, int high){
+    static void benchS(int[]array, int low, int high){
         long inizio = System.currentTimeMillis();
         MergeSort.mergeSort(array,0,array.length);
         long fine = System.currentTimeMillis();
@@ -79,19 +71,20 @@ public class Test {
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 
-    static void mergesortParallelo(int[]array, int low, int high){
-        ParallelMerge sort = new ParallelMerge(array, low, high);
+    /**
+     *
+     * @param array
+     * @param low
+     * @param high
+     */
+    static void benchPS(int[]array, int low, int high){
+        ParallelSort sort = new ParallelSort(array, low, high);
         long inizio = System.currentTimeMillis();
-        ParallelMerge.fjPool.invoke(sort);
+        ParallelSort.fjPool.invoke(sort);
         long fine = System.currentTimeMillis();
         out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort parallelo con funzione di merge seriale ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
-
-
     }
-
-
-
 }
