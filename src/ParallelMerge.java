@@ -46,7 +46,7 @@ public class ParallelMerge extends RecursiveAction {
         } else {
             if (high - mid <= mid - low) {
                 int mediano = (mid - low)/2;
-                int destro = indexOf(array, array[mediano], mid, high);
+                int destro = binarySearch(array, array[mediano], mid, high);
                 ParallelMerge left = new ParallelMerge(array, low, mediano, mid, destro);
                 ParallelMerge right = new ParallelMerge(array, mediano, mid, destro, high);
                 left.fork();
@@ -54,7 +54,7 @@ public class ParallelMerge extends RecursiveAction {
                 left.join();
             } else {
                 int mediano2 = (high - mid)/2;
-                int sinistro = indexOf(array, array[mediano2], low, mid);
+                int sinistro = binarySearch(array, array[mediano2], low, mid);
                 ParallelMerge left = new ParallelMerge(array, low, sinistro, mid, mediano2);
                 ParallelMerge right = new ParallelMerge(array, sinistro, mid, mediano2, high);
                 left.fork();
@@ -65,7 +65,7 @@ public class ParallelMerge extends RecursiveAction {
          **/
     }
 
-    public static int indexOf(int[] a, int key, int l, int h) {
+    public static int binarySearch(int[] a, int key, int l, int h) {
         int lo = l;
         int hi = h - 1;
         int result = 0;
@@ -86,6 +86,6 @@ public class ParallelMerge extends RecursiveAction {
 
     public static void main(String[] args) {
         int[] a = {1 ,1, 2, 3, 5, 5, 5, 5};
-        System.out.println(indexOf(a, 0, 0, 7));
+        System.out.println(binarySearch(a, 0, 0, 7));
     }
 }
