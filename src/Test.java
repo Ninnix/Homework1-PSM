@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 import static java.lang.System.out;
+import static java.lang.System.setOut;
 
 public class Test {
 
@@ -16,8 +17,8 @@ public class Test {
                 array[i] = n;
                 n--;
             }
-
         }
+        
         else if (args[1].equals("B")){ // Tipologia B. sequenze di n numeri casuali.
             for (int i = 0; i < lenght; i++) {
                 Random rn = new Random();
@@ -28,7 +29,7 @@ public class Test {
         else {
             // ECCEZIONE: tipologia di input non corretta
         }
-        out.println(Arrays.toString(array)); // stampiamo l'array creata
+        //out.println(Arrays.toString(array)); // stampiamo l'array creata
 
         int[] a1 = array; //array del mergesort sequenziale
         int[] a2 = array; //array del mergesort parallelo con funzione di merge seriale
@@ -65,7 +66,7 @@ public class Test {
         long inizio = System.currentTimeMillis();
         MergeSort.mergeSort(array,0,array.length);
         long fine = System.currentTimeMillis();
-        out.println(Arrays.toString(array));
+        //out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort seriale ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
@@ -82,7 +83,7 @@ public class Test {
         long inizio = System.currentTimeMillis();
         ParallelSort.fjPool.invoke(sort);
         long fine = System.currentTimeMillis();
-        out.println(Arrays.toString(array));
+        //out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort parallelo con funzione di merge seriale ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
