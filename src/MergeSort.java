@@ -26,14 +26,14 @@ public class MergeSort {
      */
     static void serialMerge(int[] array, int low, int middle, int high) {
 
-        int lenAux = high - low;
+        int lenAux = high - low; //lunghezza array ausiliario
         int[] aux = new int[lenAux];
 
         for (int i = 0; i < lenAux; i++) {
             aux[i] = array[i + low];
         }
 
-        int midAux = lenAux / 2;
+        int midAux = lenAux / 2; //middle array ausiliario
         int left = 0;
         int right = midAux;
         int current = low;
