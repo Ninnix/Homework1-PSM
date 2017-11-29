@@ -41,6 +41,7 @@ public class ParallelMerge extends RecursiveAction {
             max[i] = array[mid+i];
         }
 
+
         /**
         if(true){
         } else {
