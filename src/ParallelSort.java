@@ -13,7 +13,6 @@ public class ParallelSort extends RecursiveAction {
     private int low;
     private int high;
 
-
     ParallelSort(int[] arr, int l, int h) {
         array = arr;
         low = l;
