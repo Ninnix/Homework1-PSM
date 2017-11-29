@@ -92,7 +92,8 @@ public class Test {
     }
 
     static void benchPP(int[]array, int low, int high){
-        ParMergeSort sort = new ParMergeSort(array,0,array.length);
+        int[] aux = new int[array.length];
+        ParMergeSort sort = new ParMergeSort(array, low, high, aux, 0);
         long inizio = System.currentTimeMillis();
         ParMergeSort.fjPool.invoke(sort);
         long fine = System.currentTimeMillis();

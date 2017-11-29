@@ -10,6 +10,7 @@ public class ParallelMerge extends RecursiveAction {
     private int p2;
     private int r2;
     private int[] aux;
+    private int s;
 
     /*ParallelMerge(int[] arr, int l, int m, int medM, int h, int[] aux) {
         array = arr;
@@ -20,13 +21,14 @@ public class ParallelMerge extends RecursiveAction {
         this.aux = aux;
     }*/
 
-    ParallelMerge(int[] arr, int l, int m, int medM, int h, int[] aux) {
+    ParallelMerge(int[] arr, int l, int m, int medM, int h, int[] aux, int ss) {
         array = arr;
         p1 = l;
         r1 = m;
         p2 = medM;
         r2 = h;
         this.aux = aux;
+        s = ss;
     }
 
     @Override
@@ -49,10 +51,12 @@ public class ParallelMerge extends RecursiveAction {
         for (int i = 0; i < lMax; i++) {
             max[i] = array[r1+i];
         }*/
-        int q1;int q2;int q3;
-        int n1 = r1 - p1+1;
-        int n2 = r2 - p2+1;
-        if (n1 < n2){
+        int q1;
+        int q2;
+        int q3;
+        int n1 = r1 - p1 + 1;
+        int n2 = r2 - p2 + 1;
+        if (n1 < n2) {
             int appoggio;
 
             appoggio = p1;
@@ -71,11 +75,11 @@ public class ParallelMerge extends RecursiveAction {
             return;
         else {
             q1 = (p1 + r1) / 2;
-            q2 = binarySearch(array,array[q1], p2, r2);
-            q3 = (q1-p1) + (q2-p2);
+            q2 = binarySearch(array[q1], array, p2, r2);
+            q3 = s + (q1 - p1) + (q2 - p2);
             aux[q3] = array[q1];
-            ParallelMerge left = new ParallelMerge(array, p1, q1-1, p2, q2-1, aux);
-            ParallelMerge right = new ParallelMerge(array, q1+1,r1,q2,r2,aux);
+            ParallelMerge left = new ParallelMerge(array, p1, q1 - 1, p2, q2 - 1, aux, s);
+            ParallelMerge right = new ParallelMerge(array, q1 + 1, r1, q2, r2, aux, q3 + 1);
             left.fork();
             right.compute();
             left.join();
@@ -84,7 +88,7 @@ public class ParallelMerge extends RecursiveAction {
     }
 
 
-    public static int binarySearch(int[] a, int key, int l, int h) {
+    /*public static int binarySearch(int[] a, int key, int l, int h) {
         int lo = l;
         int hi = h - 1;
         int result = 0;
@@ -101,13 +105,28 @@ public class ParallelMerge extends RecursiveAction {
             result = mid;
         }
         return result;
+    }*/
+
+    /**
+     * @param x   la chiave da cercare
+     * @param arr l'array in cui cercare
+     * @param l   indice low dell'array
+     * @param h   indice di high dell'array
+     * @return
+     */
+    public static int binarySearch(int x, int[] arr, int l, int h) {
+        int low = l;
+        int high = Math.max(l, h + 1);
+        while (low < high) {
+            int mid = ((low + high) / 2);
+            if (x <= arr[mid])
+                high = mid;
+            else
+                low = mid + 1;
+        }
+        return high;
     }
 
-    public static void main(String[] args) {
-        int[] a = {1 ,1, 2, 3, 5, 5, 5, 5};
-        System.out.println(binarySearch(a, 4, 0, 8));
-
-    }
 }
 
 
