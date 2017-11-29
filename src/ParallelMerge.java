@@ -7,7 +7,7 @@ public class ParallelMerge extends RecursiveAction {
     private int[] array;
     private int low;
     private int mid;
-    private int medMax;
+    private int medMax; //middle del sottoarray piu' grande
     private int high;
 
 
