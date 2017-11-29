@@ -6,16 +6,14 @@ public class ParMergeSort extends RecursiveAction {
     static final ForkJoinPool fjPool = new ForkJoinPool();
     private int[] array;
     private int low;
-    private int mid;
-    private int medMax;
     private int high;
+    private int[] aux = array;
 
 
     ParMergeSort(int[] arr, int l, int h) {
         array = arr;
         low = l;
         high = h;
-        mid = (l + h) / 2;
     }
 
     @Override
@@ -27,8 +25,9 @@ public class ParMergeSort extends RecursiveAction {
             left.fork();
             right.compute();
             left.join();
-            ParallelMerge parMerge = new ParallelMerge(array, low, mid, 0, high ); //TODO manca da passare il medMax(ma all' inizio non lo abbiamo)
-            parMerge.compute();
+            ParallelMerge parMerge = new ParallelMerge(array, low, mid, mid, high, aux  ); //TODO i parametri sono sbagliati
+            ParallelMerge.fjPool.invoke(parMerge);
+
         }
     }
 }

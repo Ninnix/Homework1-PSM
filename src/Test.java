@@ -22,7 +22,7 @@ public class Test {
         else if (args[1].equals("B")){ // Tipologia B. sequenze di n numeri casuali.
             for (int i = 0; i < lenght; i++) {
                 Random rn = new Random();
-                int random = rn.nextInt(lenght) ;
+                int random = rn.nextInt(1000) ;
                 array[i] = random;
             }
         }
@@ -33,8 +33,10 @@ public class Test {
 
         int[] a1 = array; //array del mergesort sequenziale
         int[] a2 = array; //array del mergesort parallelo con funzione di merge seriale
-        benchS(a1, 0, array.length);
-        benchPS(a2, 0, array.length);
+        int[] a3 = array;
+        //benchS(a1, 0, array.length);
+        //çbenchPS(a2, 0, array.length);
+        benchPP(a3, 0, a3.length-1);
     }
 
     /**
@@ -86,6 +88,17 @@ public class Test {
         //out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort parallelo con funzione di merge seriale ha impiegato: " +(fine-inizio)+
+                " millisecondi per ordinare " + array.length + " numeri \n" );
+    }
+
+    static void benchPP(int[]array, int low, int high){
+        ParMergeSort sort = new ParMergeSort(array,0,array.length);
+        long inizio = System.currentTimeMillis();
+        ParMergeSort.fjPool.invoke(sort);
+        long fine = System.currentTimeMillis();
+        //out.println(Arrays.toString(array));
+        out.println(check(array));
+        out.println("Il mergesort seriale ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 }
