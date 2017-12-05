@@ -148,7 +148,8 @@ public class ParallelMerge extends RecursiveAction {
 
 public static void main(String[] args) {
     int[] arr = {5,6,1,2};
-    int[] aux = {5,6,1,2};
+    int[] aux = new int[arr.length];
+    System.arraycopy( arr, 0, aux, 0, arr.length );
     //System.out.println(binarySearch(8, arr, 2, 5));
     ParallelMerge parmerge = new ParallelMerge(arr, 0, 2, 2, arr.length, aux, 0, aux.length);
     parmerge.compute();
