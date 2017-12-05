@@ -46,6 +46,7 @@ public class ParallelMerge extends RecursiveAction {
             lenDx = appoggio;
         }
         if (lenSx == 1 && lenDx == 0) {
+            array[auxLow] = aux[sxLow];
             return;
         } else {
             int sxMed = (sxHigh + sxLow) / 2;
@@ -55,6 +56,7 @@ public class ParallelMerge extends RecursiveAction {
             ParallelMerge right = new ParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxInd, auxHigh);
             left.compute();
             right.compute();
+            /**
             for (int i = auxLow; i < auxInd; i++) {
                 array[i] = aux[dxLow];
                 //sxLow++;
@@ -62,7 +64,7 @@ public class ParallelMerge extends RecursiveAction {
             for (int j = auxInd; j < auxHigh; j++) {
                 array[j] = aux[sxLow];
                 //dxLow++;
-            }
+            }**/
         }
 
         //left.fork();
@@ -145,8 +147,8 @@ public class ParallelMerge extends RecursiveAction {
     }
 
 public static void main(String[] args) {
-    int[] arr = {5,6,1};
-    int[] aux = {5,6,1};
+    int[] arr = {5,6,1,2};
+    int[] aux = {5,6,1,2};
     //System.out.println(binarySearch(8, arr, 2, 5));
     ParallelMerge parmerge = new ParallelMerge(arr, 0, 2, 2, arr.length, aux, 0, aux.length);
     parmerge.compute();
