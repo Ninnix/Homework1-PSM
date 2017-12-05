@@ -30,7 +30,7 @@ public class ParallelMerge extends RecursiveAction {
     protected void compute() {
         int lenSx = sxHigh - sxLow;
         int lenDx = dxHigh - dxLow;
-        if (lenSx < lenDx) {
+        if (lenSx < lenDx) { //scambio gli indici in modo da avere sempre array di sinistra piu' grande
             int appoggio;
 
             appoggio = sxLow;
@@ -49,9 +49,9 @@ public class ParallelMerge extends RecursiveAction {
             array[auxLow] = aux[sxLow];
             return;
         } else {
-            int sxMed = (sxHigh + sxLow) / 2;
+            int sxMed = (sxHigh + sxLow) / 2; //mediano sottoarray piu' grande
             int dxInd = binarySearch(aux[sxMed], aux, dxLow, dxHigh);
-            int auxInd = (sxMed - sxLow) + (dxInd - dxLow);
+            int auxInd = (sxMed - sxLow) + (dxInd - dxLow); //numero elementi (indice) piu' piccoli del sxMed
             ParallelMerge left = new ParallelMerge(array, sxLow, sxMed, dxLow, dxInd, aux, auxLow, auxInd);
             ParallelMerge right = new ParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxInd, auxHigh);
             left.compute();
