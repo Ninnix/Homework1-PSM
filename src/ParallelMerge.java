@@ -1,38 +1,74 @@
+import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
+import static java.lang.System.out;
 
 public class ParallelMerge extends RecursiveAction {
 
     static final ForkJoinPool fjPool = new ForkJoinPool();
     private int[] array;
-    private int p1;
-    private int r1;
-    private int p2;
-    private int r2;
     private int[] aux;
-    private int s;
+    private int sxLow;
+    private int sxHigh;
+    private int dxLow;
+    private int dxHigh;
+    private int auxLow;
+    private int auxHigh;
 
-    /*ParallelMerge(int[] arr, int l, int m, int medM, int h, int[] aux) {
+    ParallelMerge(int[] arr,int sxL,int sxH,int dxL, int dxH, int[] aux, int auxL, int auxH) {
         array = arr;
-        low = l;
-        med = m;
-        mediano = medM;
-        high = h;
         this.aux = aux;
-    }*/
-
-    ParallelMerge(int[] arr, int l, int m, int medM, int h, int[] aux, int ss) {
-        array = arr;
-        p1 = l;
-        r1 = m;
-        p2 = medM;
-        r2 = h;
-        this.aux = aux;
-        s = ss;
+        sxLow = sxL;
+        sxHigh = sxH;
+        dxLow = dxL;
+        dxHigh = dxH;
+        auxLow = auxL;
+        auxHigh = auxH;
     }
 
     @Override
     protected void compute() {
+        int lenSx = sxHigh - sxLow;
+        int lenDx = dxHigh - dxLow;
+        if (lenSx < lenDx) {
+            int appoggio;
+
+            appoggio = sxLow;
+            sxLow = dxLow;
+            dxLow = appoggio;
+
+            appoggio = sxHigh;
+            sxHigh = dxHigh;
+            dxHigh = appoggio;
+
+            appoggio = lenSx;
+            lenSx = lenDx;
+            lenDx = appoggio;
+        }
+        if (lenSx == 1 && lenDx == 0) {
+            return;
+        } else {
+            int sxMed = (sxHigh + sxLow) / 2;
+            int dxInd = binarySearch(aux[sxMed], aux, dxLow, dxHigh);
+            int auxInd = (sxMed - sxLow) + (dxInd - dxLow);
+            ParallelMerge left = new ParallelMerge(array, sxLow, sxMed, dxLow, dxInd, aux, auxLow, auxInd);
+            ParallelMerge right = new ParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxInd, auxHigh);
+            left.compute();
+            right.compute();
+            for (int i = auxLow; i < auxInd; i++) {
+                array[i] = aux[dxLow];
+                //sxLow++;
+            }
+            for (int j = auxInd; j < auxHigh; j++) {
+                array[j] = aux[sxLow];
+                //dxLow++;
+            }
+        }
+
+        //left.fork();
+        //right.compute();
+        //left.join();
+
         /*int lMin = 0;                  //lunghezza sottoarray piu' piccolo
         int lMax = 0;                  //lunghezza sottoarray piu' grande
         if (r2 - r1 <= r1 - p1) { //sottoarray di destra e' piu' grande o sono uguali
@@ -50,7 +86,7 @@ public class ParallelMerge extends RecursiveAction {
         }
         for (int i = 0; i < lMax; i++) {
             max[i] = array[r1+i];
-        }*/
+        }
         int q1;
         int q2;
         int q3;
@@ -69,7 +105,7 @@ public class ParallelMerge extends RecursiveAction {
 
             appoggio = n1;
             n1 = n2;
-            n2 = n1;
+            n2 = appoggio;
         }
         if (n1 == 0)
             return;
@@ -83,40 +119,21 @@ public class ParallelMerge extends RecursiveAction {
             left.fork();
             right.compute();
             left.join();
-        }
 
+        }
+        */
     }
-
-
-    /*public static int binarySearch(int[] a, int key, int l, int h) {
-        int lo = l;
-        int hi = h - 1;
-        int result = 0;
-        while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
-            if (key < a[mid]) hi = mid - 1;
-            else if (key > a[mid]) lo = mid + 1;
-            else {
-                while (a[mid - 1] == a[mid]) {
-                    mid--;
-                }
-                return mid;
-            }
-            result = mid;
-        }
-        return result;
-    }*/
 
     /**
      * @param x   la chiave da cercare
      * @param arr l'array in cui cercare
      * @param l   indice low dell'array
      * @param h   indice di high dell'array
-     * @return
+     * @return la posizione (inclusa) in cui gli elementi sono maggiori o uguali di x
      */
     public static int binarySearch(int x, int[] arr, int l, int h) {
         int low = l;
-        int high = Math.max(l, h + 1);
+        int high = Math.max(l, h);
         while (low < high) {
             int mid = ((low + high) / 2);
             if (x <= arr[mid])
@@ -127,29 +144,16 @@ public class ParallelMerge extends RecursiveAction {
         return high;
     }
 
+public static void main(String[] args) {
+    int[] arr = {5,6,1};
+    int[] aux = {5,6,1};
+    //System.out.println(binarySearch(8, arr, 2, 5));
+    ParallelMerge parmerge = new ParallelMerge(arr, 0, 2, 2, arr.length, aux, 0, aux.length);
+    parmerge.compute();
+    out.println(Arrays.toString(arr));
+    }
 }
 
 
 
-/**
- if(true){
- } else {
- if (r2 - r1 <= r1 - p1) {
- int mediano = (r1 - p1)/2;
- int destro = binarySearch(array, array[mediano], r1, r2);
- ParallelMerge left = new ParallelMerge(array, p1, mediano, r1, destro);
- ParallelMerge right = new ParallelMerge(array, mediano, r1, destro, r2);
- left.fork();
- right.compute();
- left.join();
- } else {
- int mediano2 = (r2 - r1)/2;
- int sinistro = binarySearch(array, array[mediano2], p1, r1);
- ParallelMerge left = new ParallelMerge(array, p1, sinistro, r1, mediano2);
- ParallelMerge right = new ParallelMerge(array, sinistro, r1, mediano2, r2);
- left.fork();
- right.compute();
- left.join();
- }
- }
- **/
+

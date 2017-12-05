@@ -93,9 +93,9 @@ public class Test {
 
     static void benchPP(int[]array, int low, int high){
         int[] aux = new int[array.length];
-        ParMergeSort sort = new ParMergeSort(array, low, high, aux, 0);
+        ParMergeSort sort2 = new ParMergeSort(array, low, high, aux, 0);
         long inizio = System.currentTimeMillis();
-        ParMergeSort.fjPool.invoke(sort);
+        ParMergeSort.fjPool.invoke(sort2);
         long fine = System.currentTimeMillis();
         //out.println(Arrays.toString(array));
         out.println(check(array));
