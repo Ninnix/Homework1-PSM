@@ -35,8 +35,8 @@ public class Test {
         int[] a2 = array; //array del mergesort parallelo con funzione di merge seriale
         int[] a3 = array;
         //benchS(a1, 0, array.length);
-        //çbenchPS(a2, 0, array.length);
-        benchPP(a3, 0, a3.length-1);
+        benchPS(a2, 0, array.length);
+        benchPP(a3, 0, a3.length);
     }
 
     /**
@@ -98,7 +98,7 @@ public class Test {
         long inizio = System.currentTimeMillis();
         ParMergeSort.fjPool.invoke(sort2);
         long fine = System.currentTimeMillis();
-        out.println(Arrays.toString(array));
+        //out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort parallelo ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
