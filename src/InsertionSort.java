@@ -9,7 +9,7 @@ public class InsertionSort {
         out.println(Arrays.toString(arr));
     }
 
-    public void insertionSort(int array[]) {
+    public static void insertionSort(int array[]) {
         for (int i = 1; i < array.length; i++) {
             int x = array[i];
             // Trova la locazione corretta dove inserire grazie alla ricerca binaria

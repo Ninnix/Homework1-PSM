@@ -32,9 +32,12 @@ public class Test {
         System.arraycopy( array, 0, a2, 0, array.length );
         int[] a3 = new int[array.length];
         System.arraycopy( array, 0, a3, 0, array.length );
+        int[] a4 = new int[array.length];
+        System.arraycopy( array, 0, a4, 0, array.length );
         benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
+        benchI(a4);
     }
 
     /**
@@ -105,6 +108,16 @@ public class Test {
         //out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort parallelo ha impiegato: " +(fine-inizio)+
+                " millisecondi per ordinare " + array.length + " numeri \n" );
+    }
+
+    static void benchI(int[]array){
+        long inizio = System.currentTimeMillis();
+        InsertionSort.insertionSort(array);
+        long fine = System.currentTimeMillis();
+        //out.println(Arrays.toString(array));
+        out.println(check(array));
+        out.println("l'InsertionSort ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 }
