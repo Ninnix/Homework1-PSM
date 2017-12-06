@@ -27,7 +27,7 @@ public class ParallelSort extends RecursiveAction {
             ParallelSort right = new ParallelSort(array, mid, high);
             left.fork();
             right.compute();
-            left.join();
+            //left.join();
             MergeSort.serialMerge(array, low, mid, high);
         }
     }
