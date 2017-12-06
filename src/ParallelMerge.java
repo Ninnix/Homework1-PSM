@@ -66,7 +66,7 @@ public class ParallelMerge extends RecursiveAction {
             ParallelMerge right = new ParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxLow + auxInd, auxHigh);
             left.fork();
             right.compute();
-            left.join();
+            //left.join();
             /**
             for (int i = auxLow; i < auxInd; i++) {
                 array[i] = aux[dxLow];

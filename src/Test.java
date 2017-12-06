@@ -35,7 +35,7 @@ public class Test {
         int[] a2 = array; //array del mergesort parallelo con funzione di merge seriale
         int[] a3 = array;
         //benchS(a1, 0, array.length);
-        benchS(a1,0, a1.length);
+        //benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
     }
