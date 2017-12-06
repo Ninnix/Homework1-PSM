@@ -1,11 +1,9 @@
 import java.util.Arrays;
 import java.util.Random;
-
 import static java.lang.System.out;
-import static java.lang.System.setOut;
+
 
 public class Test {
-
 
     public static void main(String[] args) {
         int n = Integer.parseInt(args[0]); //Il valore n specificato da linea di comando;
@@ -18,7 +16,6 @@ public class Test {
                 n--;
             }
         }
-        
         else if (args[1].equals("B")){ // Tipologia B. sequenze di n numeri casuali.
             for (int i = 0; i < lenght; i++) {
                 Random rn = new Random();
@@ -30,11 +27,11 @@ public class Test {
             // ECCEZIONE: tipologia di input non corretta
         }
         //out.println(Arrays.toString(array)); // stampiamo l'array creata
-
         int[] a1 = array; //array del mergesort sequenziale
-        int[] a2 = array; //array del mergesort parallelo con funzione di merge seriale
-        int[] a3 = array;
-        //benchS(a1, 0, array.length);
+        int[] a2 = new int[array.length]; //array del mergesort parallelo con funzione di merge seriale
+        System.arraycopy( array, 0, a2, 0, array.length );
+        int[] a3 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
         //benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
@@ -92,6 +89,12 @@ public class Test {
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 
+    /**
+     *
+     * @param array
+     * @param low
+     * @param high
+     */
     static void benchPP(int[]array, int low, int high){
         int[] aux = new int[array.length];
         System.arraycopy( array, 0, aux, 0, array.length );

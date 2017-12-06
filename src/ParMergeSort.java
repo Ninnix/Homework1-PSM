@@ -9,9 +9,6 @@ public class ParMergeSort extends RecursiveAction {
     private int high;
     private int[] aux;
 
-
-
-
     ParMergeSort(int[] arr, int l, int h, int[] aux) {
         array = arr;
         low = l;
@@ -19,7 +16,6 @@ public class ParMergeSort extends RecursiveAction {
         this.aux = aux;
 
     }
-
 
     @Override
     protected void compute() {
