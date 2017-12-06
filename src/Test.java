@@ -93,13 +93,14 @@ public class Test {
 
     static void benchPP(int[]array, int low, int high){
         int[] aux = new int[array.length];
-        ParMergeSort sort2 = new ParMergeSort(array, low, high, aux, 0);
+        System.arraycopy( array, 0, aux, 0, array.length );
+        ParMergeSort sort2 = new ParMergeSort(array, low, high, aux);
         long inizio = System.currentTimeMillis();
         ParMergeSort.fjPool.invoke(sort2);
         long fine = System.currentTimeMillis();
-        //out.println(Arrays.toString(array));
+        out.println(Arrays.toString(array));
         out.println(check(array));
-        out.println("Il mergesort seriale ha impiegato: " +(fine-inizio)+
+        out.println("Il mergesort parallelo ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 }

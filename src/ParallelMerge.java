@@ -45,6 +45,16 @@ public class ParallelMerge extends RecursiveAction {
             lenSx = lenDx;
             lenDx = appoggio;
         }
+        if (lenSx == 1 && lenDx == 1) {
+            if (aux[sxLow] <= aux[dxLow]) {
+                array[auxLow] = aux[sxLow];
+                array[auxLow+1] = aux[dxLow];
+            } else {
+                array[auxLow] = aux[dxLow];
+                array[auxLow+1] = aux[sxLow];
+            }
+            return;
+        }
         if (lenSx == 1 && lenDx == 0) {
             array[auxLow] = aux[sxLow];
             return;
@@ -52,8 +62,8 @@ public class ParallelMerge extends RecursiveAction {
             int sxMed = (sxHigh + sxLow) / 2; //mediano sottoarray piu' grande
             int dxInd = binarySearch(aux[sxMed], aux, dxLow, dxHigh);
             int auxInd = (sxMed - sxLow) + (dxInd - dxLow); //numero elementi (indice) piu' piccoli del sxMed
-            ParallelMerge left = new ParallelMerge(array, sxLow, sxMed, dxLow, dxInd, aux, auxLow, auxInd);
-            ParallelMerge right = new ParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxInd, auxHigh);
+            ParallelMerge left = new ParallelMerge(array, sxLow, sxMed, dxLow, dxInd, aux, auxLow,auxLow + auxInd);
+            ParallelMerge right = new ParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxLow + auxInd, auxHigh);
             left.compute();
             right.compute();
             /**
@@ -147,11 +157,11 @@ public class ParallelMerge extends RecursiveAction {
     }
 
 public static void main(String[] args) {
-    int[] arr = {5,6,1,2};
+    int[] arr = {0,2,5,60,1,3,4,5,20,30};
     int[] aux = new int[arr.length];
     System.arraycopy( arr, 0, aux, 0, arr.length );
     //System.out.println(binarySearch(8, arr, 2, 5));
-    ParallelMerge parmerge = new ParallelMerge(arr, 0, 2, 2, arr.length, aux, 0, aux.length);
+    ParallelMerge parmerge = new ParallelMerge(arr, 0, 4, 4, arr.length, aux, 0, aux.length);
     parmerge.compute();
     out.println(Arrays.toString(arr));
     }
