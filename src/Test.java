@@ -32,7 +32,7 @@ public class Test {
         System.arraycopy( array, 0, a2, 0, array.length );
         int[] a3 = new int[array.length];
         System.arraycopy( array, 0, a3, 0, array.length );
-        //benchS(a1,0, a1.length);
+        benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
     }

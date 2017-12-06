@@ -25,7 +25,7 @@ public class ParMergeSort extends RecursiveAction {
             ParMergeSort right = new ParMergeSort(array, mid, high, aux);
             left.fork();
             right.compute();
-            //left.join();
+            left.join();
             ParallelMerge parmerge = new ParallelMerge(array, low, mid, mid, high, aux,low, high);
             parmerge.compute();
             for (int i = low; i< high; i++)
