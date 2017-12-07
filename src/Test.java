@@ -37,7 +37,7 @@ public class Test {
         benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
-        //benchI(a4);
+        benchC(a4);
     }
 
     /**
@@ -111,14 +111,14 @@ public class Test {
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 
-    //messo per testare l'InsertionSort
-    static void benchI(int[]array){
+    //messo per testare il CountingSort
+    static void benchC(int[]array){
         long inizio = System.currentTimeMillis();
-        InsertionSort.insertionSort(array);
+        CountingSort.countingSort(array);
         long fine = System.currentTimeMillis();
         //out.println(Arrays.toString(array));
         out.println(check(array));
-        out.println("l'InsertionSort ha impiegato: " +(fine-inizio)+
+        out.println("il CountingSort ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 }
