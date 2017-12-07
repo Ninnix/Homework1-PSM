@@ -37,7 +37,7 @@ public class Test {
         benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
-        benchI(a4);
+        //benchI(a4);
     }
 
     /**
@@ -111,6 +111,7 @@ public class Test {
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 
+    //messo per testare l'InsertionSort
     static void benchI(int[]array){
         long inizio = System.currentTimeMillis();
         InsertionSort.insertionSort(array);
