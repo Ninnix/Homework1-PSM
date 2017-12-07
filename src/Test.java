@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.Random;
+
+import static java.lang.System.lineSeparator;
 import static java.lang.System.out;
 
 
@@ -34,10 +36,13 @@ public class Test {
         System.arraycopy( array, 0, a3, 0, array.length );
         int[] a4 = new int[array.length];
         System.arraycopy( array, 0, a4, 0, array.length );
-        benchS(a1,0, a1.length);
+        int [] a5 = new int[array.length];
+        System.arraycopy( array, 0, a5, 0, array.length );
+        //benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
-        benchC(a4);
+        //benchC(a4, 0, a4.length);
+        //benchIns(a1,0,1);
     }
 
     /**
@@ -67,7 +72,7 @@ public class Test {
      */
     static void benchS(int[]array, int low, int high){
         long inizio = System.currentTimeMillis();
-        MergeSort.mergeSort(array,0,array.length);
+        MergeSort.mergeSort(array,low,high);
         long fine = System.currentTimeMillis();
         //out.println(Arrays.toString(array));
         out.println(check(array));
@@ -112,13 +117,23 @@ public class Test {
     }
 
     //messo per testare il CountingSort
-    static void benchC(int[]array){
+    static void benchC(int[]array, int low, int high){
         long inizio = System.currentTimeMillis();
-        CountingSort.countingSort(array);
+        CountingSort.countingSort2(array, low, high);
         long fine = System.currentTimeMillis();
-        //out.println(Arrays.toString(array));
+        out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("il CountingSort ha impiegato: " +(fine-inizio)+
+                " millisecondi per ordinare " + array.length + " numeri \n" );
+    }
+
+    static void benchIns(int[]array, int low, int high){
+        long inizio = System.currentTimeMillis();
+        Sorting.InsectionSort(array, low, high);
+        long fine = System.currentTimeMillis();
+        out.println(Arrays.toString(array));
+        out.println(check(array));
+        out.println("L'insertion Sort ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 }

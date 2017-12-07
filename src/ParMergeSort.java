@@ -19,6 +19,29 @@ public class ParMergeSort extends RecursiveAction {
 
     @Override
     protected void compute() {
+        int mid = (low + high) / 2;
+        if ((high - low) < 10000) {
+            MergeSort.mergeSort(array,low,high);
+            return;
+        } else {
+            ParMergeSort left = new ParMergeSort(array, low, mid, aux);
+            ParMergeSort right = new ParMergeSort(array, mid, high, aux);
+            left.fork();
+            right.fork();
+            left.join();
+        }
+        for (int i = low; i < high; i++) {
+            aux[i] = array[i];
+        }
+        ParallelMerge parmerge = new ParallelMerge(array, low, mid, mid, high, aux, low, high);
+        parmerge.compute();
+
+    }
+}
+
+/*
+    @Override
+    protected void compute() {
         if ((high-low) > 1){
             int mid = (low+high)/2;
             ParMergeSort left = new ParMergeSort(array, low, mid, aux);
@@ -32,4 +55,7 @@ public class ParMergeSort extends RecursiveAction {
                 aux[i] = array[i];
         }
     }
-}
+    */
+
+
+
