@@ -36,13 +36,10 @@ public class Test {
         System.arraycopy( array, 0, a3, 0, array.length );
         int[] a4 = new int[array.length];
         System.arraycopy( array, 0, a4, 0, array.length );
-        int [] a5 = new int[array.length];
-        System.arraycopy( array, 0, a5, 0, array.length );
         //benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
-        //benchC(a4, 0, a4.length);
-        //benchIns(a1,0,1);
+        benchAlg(a4, 0, a4.length);
     }
 
     /**
@@ -116,24 +113,15 @@ public class Test {
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 
-    //messo per testare il CountingSort
-    static void benchC(int[]array, int low, int high){
+    //messo per testare che algoritmo usare
+    static void benchAlg(int[]array, int low, int high){
         long inizio = System.currentTimeMillis();
-        CountingSort.countingSort2(array, low, high);
+        Sorting.insectionSort(array, low, high);
+        //Sorting.countingSort(array);
         long fine = System.currentTimeMillis();
         out.println(Arrays.toString(array));
         out.println(check(array));
-        out.println("il CountingSort ha impiegato: " +(fine-inizio)+
-                " millisecondi per ordinare " + array.length + " numeri \n" );
-    }
-
-    static void benchIns(int[]array, int low, int high){
-        long inizio = System.currentTimeMillis();
-        Sorting.InsectionSort(array, low, high);
-        long fine = System.currentTimeMillis();
-        out.println(Arrays.toString(array));
-        out.println(check(array));
-        out.println("L'insertion Sort ha impiegato: " +(fine-inizio)+
+        out.println("L'algoritmo di sorting ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 }
