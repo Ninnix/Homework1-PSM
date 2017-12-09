@@ -36,10 +36,10 @@ public class Test {
         System.arraycopy( array, 0, a3, 0, array.length );
         int[] a4 = new int[array.length];
         System.arraycopy( array, 0, a4, 0, array.length );
-        //benchS(a1,0, a1.length);
+        benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
-        benchAlg(a4, 0, a4.length);
+        //benchAlg(a4, 0, a4.length);
     }
 
     /**

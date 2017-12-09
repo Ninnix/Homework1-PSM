@@ -12,6 +12,7 @@ public class ParallelSort extends RecursiveAction {
     private int[] array;
     private int low;
     private int high;
+    private int SEQUENTIAL_CUTOFF = 512;
 
     ParallelSort(int[] arr, int l, int h) {
         array = arr;
@@ -21,8 +22,11 @@ public class ParallelSort extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if ((high-low) > 1){
-            int mid = (low+high)/2;
+        if ((high - low) < SEQUENTIAL_CUTOFF){
+            MergeSort.mergeSort(array, low, high);
+        }
+        else {
+            int mid = (low + high) / 2;
             ParallelSort left = new ParallelSort(array, low, mid);
             ParallelSort right = new ParallelSort(array, mid, high);
             left.fork();
@@ -31,7 +35,6 @@ public class ParallelSort extends RecursiveAction {
             MergeSort.serialMerge(array, low, mid, high);
         }
     }
-
 }
 
 
