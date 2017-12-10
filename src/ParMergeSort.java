@@ -8,7 +8,7 @@ public class ParMergeSort extends RecursiveAction {
     private int low;
     private int high;
     private int[] aux;
-    private int SEQUENTIAL_CUTOFF = 512;
+    private int SEQUENTIAL_CUTOFF = 256;
 
     ParMergeSort(int[] arr, int l, int h, int[] aux) {
         array = arr;
@@ -27,14 +27,15 @@ public class ParMergeSort extends RecursiveAction {
             ParMergeSort left = new ParMergeSort(array, low, mid, aux);
             ParMergeSort right = new ParMergeSort(array, mid, high, aux);
             left.fork();
-            right.fork();
+            right.compute();
             left.join();
             for (int i = low; i < high; i++) {
                 aux[i] = array[i];
             }
+            ParallelMerge parmerge = new ParallelMerge(array, low, mid, mid, high, aux, low, high);
+            parmerge.compute();
         }
-        ParallelMerge parmerge = new ParallelMerge(array, low, mid, mid, high, aux, low, high);
-        parmerge.compute();
+
     }
 }
 
