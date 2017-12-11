@@ -36,9 +36,11 @@ public class ParallelSort extends RecursiveAction {
 
     @Override
     protected void compute() {
+        if ((high-low) <= 1) return;
+        /**
         if ((high - low) < SEQUENTIAL_CUTOFF){
             Sorting.insectionSort(array, low, high);
-        }
+        }**/
         else {
             int mid = (low + high) / 2;
             ParallelSort left = new ParallelSort(array, low, mid);

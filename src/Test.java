@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
@@ -41,6 +42,11 @@ public class Test {
         benchPS(a2, 0, a2.length);
         benchPP(a3, 0, a3.length);
         //benchAlg(a4, 0, a4.length);
+        try {
+            Utils.graphWrite(ParallelSort.nodeList, ParallelSort.edgeList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
