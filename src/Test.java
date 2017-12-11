@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 import static java.lang.System.lineSeparator;
@@ -92,6 +93,7 @@ public class Test {
         out.println(check(array));
         out.println("Il mergesort parallelo con funzione di merge seriale ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
+
     }
 
     /**
