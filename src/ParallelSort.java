@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
@@ -18,8 +19,8 @@ public class ParallelSort extends RecursiveAction {
     private int SEQUENTIAL_CUTOFF = 512;
     private Node node;
     private Node nodeJ;
-    public static List<Node> nodeList = Collections.synchronizedList(new ArrayList());
-    public static List<Edge> edgeList = Collections.synchronizedList(new ArrayList());
+    public static List<Node> nodeList = Collections.synchronizedList(new ArrayList<Node>());
+    public static List<Edge> edgeList = Collections.synchronizedList(new ArrayList<Edge>());
 
 
     ParallelSort(int[] arr, int l, int h) {
@@ -45,15 +46,24 @@ public class ParallelSort extends RecursiveAction {
             int mid = (low + high) / 2;
             ParallelSort left = new ParallelSort(array, low, mid);
             ParallelSort right = new ParallelSort(array, mid, high);
-            left.fork();
+            left.compute();
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));
-            left.join();
+            //left.join();
             nodeJ = new Node(low, high);
             nodeList.add(nodeJ);
-            edgeList.add(new Edge(left.getNode(), nodeJ));
-            edgeList.add(new Edge(right.getNode(), nodeJ));
+
+            if (Objects.equals(left.nodeJ, null)){
+                edgeList.add(new Edge(left.getNode(), nodeJ));
+            }else
+                edgeList.add(new Edge(left.nodeJ, nodeJ));
+
+            if (Objects.equals(right.nodeJ, null)){
+                edgeList.add(new Edge(right.getNode(), nodeJ));
+            }else
+                edgeList.add(new Edge(right.nodeJ, nodeJ));
+
             MergeSort.serialMerge(array, low, mid, high);
         }
     }

@@ -22,7 +22,7 @@ public class ParMergeSort extends RecursiveAction {
     protected void compute() {
         int mid = (low + high) / 2;
         if ((high - low) < SEQUENTIAL_CUTOFF){
-            Sorting.insectionSort(array, low, high);
+            MergeSort.mergeSort(array,low,high);
         } else {
             ParMergeSort left = new ParMergeSort(array, low, mid, aux);
             ParMergeSort right = new ParMergeSort(array, mid, high, aux);
