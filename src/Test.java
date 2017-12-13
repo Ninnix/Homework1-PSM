@@ -2,8 +2,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
-
-import static java.lang.System.lineSeparator;
 import static java.lang.System.out;
 
 
@@ -40,7 +38,7 @@ public class Test {
         System.arraycopy( array, 0, a4, 0, array.length );
         //benchS(a1,0, a1.length);
         benchPS(a2, 0, a2.length);
-        benchPP(a3, 0, a3.length);
+        //benchPP(a3, 0, a3.length);
         //benchAlg(a4, 0, a4.length);
         try {
             Utils.graphWrite(ParallelSort.nodeList, ParallelSort.edgeList);

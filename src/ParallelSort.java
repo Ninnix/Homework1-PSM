@@ -46,11 +46,11 @@ public class ParallelSort extends RecursiveAction {
             int mid = (low + high) / 2;
             ParallelSort left = new ParallelSort(array, low, mid);
             ParallelSort right = new ParallelSort(array, mid, high);
-            left.compute();
+            left.fork();
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));
-            //left.join();
+            left.join();
             nodeJ = new Node(low, high);
             nodeList.add(nodeJ);
 
