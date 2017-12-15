@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-public class ParallelSort extends RecursiveAction {
+public class PsortSmerge extends RecursiveAction {
 
     /**
      * Versione del Mergesort in cui le chiamate ricorsive sono eseguite in
@@ -21,9 +21,10 @@ public class ParallelSort extends RecursiveAction {
     private Node nodeJ;
     public static List<Node> nodeList = Collections.synchronizedList(new ArrayList<Node>());
     public static List<Edge> edgeList = Collections.synchronizedList(new ArrayList<Edge>());
+    public static volatile int countFork = 0;
 
 
-    ParallelSort(int[] arr, int l, int h) {
+    PsortSmerge(int[] arr, int l, int h) {
         array = arr;
         low = l;
         high = h;
@@ -35,6 +36,10 @@ public class ParallelSort extends RecursiveAction {
         return this.node;
     }
 
+    public Node getNodeJ() {
+        return nodeJ;
+    }
+
     @Override
     protected void compute() {
         if ((high-low) <= 1) return;
@@ -44,9 +49,10 @@ public class ParallelSort extends RecursiveAction {
         }**/
         else {
             int mid = (low + high) / 2;
-            ParallelSort left = new ParallelSort(array, low, mid);
-            ParallelSort right = new ParallelSort(array, mid, high);
+            PsortSmerge left = new PsortSmerge(array, low, mid);
+            PsortSmerge right = new PsortSmerge(array, mid, high);
             left.fork();
+            countFork++;
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));
@@ -54,15 +60,15 @@ public class ParallelSort extends RecursiveAction {
             nodeJ = new Node(low, high);
             nodeList.add(nodeJ);
 
-            if (Objects.equals(left.nodeJ, null)){
+            if (Objects.equals(left.getNodeJ(), null)){
                 edgeList.add(new Edge(left.getNode(), nodeJ));
             }else
-                edgeList.add(new Edge(left.nodeJ, nodeJ));
+                edgeList.add(new Edge(left.getNodeJ(), nodeJ));
 
-            if (Objects.equals(right.nodeJ, null)){
+            if (Objects.equals(right.getNodeJ(), null)){
                 edgeList.add(new Edge(right.getNode(), nodeJ));
             }else
-                edgeList.add(new Edge(right.nodeJ, nodeJ));
+                edgeList.add(new Edge(right.getNodeJ(), nodeJ));
 
             MergeSort.serialMerge(array, low, mid, high);
         }

@@ -3,7 +3,7 @@
 public class Node {
 
     private int id;
-    private PairInt label;
+    private GroupInt label;
     private static int count = 0;
 
     public Node(int l, int r) {
@@ -11,33 +11,21 @@ public class Node {
         this.label = new PairInt(l, r);
     }
 
+    public Node(int l1, int r1, int l2, int r2 ) {
+        this.id = increaseCount();
+        this.label = new QuadInt(l1, r1, l2, r2);
+    }
+
     @Override
     public String toString() {
-        return "(" + label.left + "," +label.right +")";
+        return label.toString();
     }
 
     private synchronized int increaseCount() {
         return count++;
     }
 
-    private class PairInt {
-
-        private final int left;
-        private final int right;
-
-        public PairInt(int l, int r) {
-            this.left = l;
-            this.right = r;
-        }
-    }
-
     public int getId() {
         return id;
-    }
-
-    public static void main(String[] args) {
-        Node n1 = new Node(1,2);
-        Node n2 = new Node(1,3);
-        Node n3 = new Node(1,5);
     }
 }
