@@ -1,3 +1,5 @@
+package Bench;
+
 import java.util.Arrays;
 import static java.lang.System.out;
 
@@ -23,7 +25,7 @@ public class Sorting {
         }
     }
 
-    static void serialMerge2(int[] array, int low, int lmiddle, int rMiddle, int high, int[] aux, int auxL, int auxH) {
+    public static void serialMerge2(int[] array, int low, int lmiddle, int rMiddle, int high, int[] aux, int auxL, int auxH) {
 
         int left = low;
         int right = rMiddle;
@@ -52,13 +54,4 @@ public class Sorting {
             right++;
         }
     }
-
-    public static void main(String[] args){
-        int[] a = {1,3,4,6,8,29,2,3,5,7,32};
-        int[] b = {1,3,4,6,8,29,2,3,5,7,32};
-        //serialMerge2(a, 0,6,6,11,b,0,a.length);
-        insectionSort(a, 0, a.length);
-        out.println(Arrays.toString(a));
-    }
-
 }

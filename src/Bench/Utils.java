@@ -1,4 +1,7 @@
+package Bench;
 
+import Graph.Edge;
+import Graph.Node;
 import java.io.*;
 import java.util.List;
 

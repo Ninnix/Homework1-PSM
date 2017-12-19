@@ -1,3 +1,8 @@
+import Bench.MergeSort;
+import Bench.Sorting;
+import Bench.Utils;
+import Graph.GPsortPmerge;
+import Graph.GPsortSmerge;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;

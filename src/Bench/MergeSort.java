@@ -1,3 +1,5 @@
+package Bench;
+
 public class MergeSort {
 
     /**
@@ -7,7 +9,7 @@ public class MergeSort {
      * @param low
      * @param high
      */
-    static void mergeSort(int[] array, int low, int high) {
+    public static void mergeSort(int[] array, int low, int high) {
         if (high - low > 1) {
             int middle = (low + high) / 2;
             mergeSort(array, low, middle);
@@ -24,7 +26,7 @@ public class MergeSort {
      * @param middle indice di fine primo array(non compreso nel primo) e inizio secondo array(quindi compreso)
      * @param high   indice fine secondo array (quindi non compreso)
      */
-    static void serialMerge(int[] array, int low, int middle, int high) {
+    public static void serialMerge(int[] array, int low, int middle, int high) {
 
         int lenAux = high - low; //lunghezza array ausiliario
         int[] aux = new int[lenAux];
