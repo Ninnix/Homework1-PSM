@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-public class PsortPmerge extends RecursiveAction {
+public class GPsortPmerge extends RecursiveAction {
 
     static final ForkJoinPool fjPool = new ForkJoinPool();
     private int[] array;
@@ -19,7 +19,7 @@ public class PsortPmerge extends RecursiveAction {
     public static List<Edge> edgeList = Collections.synchronizedList(new ArrayList<Edge>());
     public static volatile int countFork = 0;
 
-    PsortPmerge(int[] arr, int l, int h, int[] aux) {
+    GPsortPmerge(int[] arr, int l, int h, int[] aux) {
         array = arr;
         low = l;
         high = h;
@@ -45,18 +45,18 @@ public class PsortPmerge extends RecursiveAction {
             MergeSort.mergeSort(array,low,high);
          } **/
          else {
-            PsortPmerge left = new PsortPmerge(array, low, mid, aux);
-            PsortPmerge right = new PsortPmerge(array, mid, high, aux);
-            left.compute();
+            GPsortPmerge left = new GPsortPmerge(array, low, mid, aux);
+            GPsortPmerge right = new GPsortPmerge(array, mid, high, aux);
+            left.fork();
             countFork++;
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));
-            //left.join();
+            left.join();
             for (int i = low; i < high; i++) {
                 aux[i] = array[i];
             }
-            ParallelMerge parmerge = new ParallelMerge(array, low, mid, mid, high, aux, low, high);
+            GParallelMerge parmerge = new GParallelMerge(array, low, mid, mid, high, aux, low, high);
             Node nodeAux = parmerge.getNode();
             if (Objects.equals(left.getNodeJ(), null)){
                 edgeList.add(new Edge(left.getNode(), nodeAux));

@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-public class PsortSmerge extends RecursiveAction {
+public class GPsortSmerge extends RecursiveAction {
 
     /**
      * Versione del Mergesort in cui le chiamate ricorsive sono eseguite in
@@ -24,7 +24,7 @@ public class PsortSmerge extends RecursiveAction {
     public static volatile int countFork = 0;
 
 
-    PsortSmerge(int[] arr, int l, int h) {
+    GPsortSmerge(int[] arr, int l, int h) {
         array = arr;
         low = l;
         high = h;
@@ -49,8 +49,8 @@ public class PsortSmerge extends RecursiveAction {
         }**/
         else {
             int mid = (low + high) / 2;
-            PsortSmerge left = new PsortSmerge(array, low, mid);
-            PsortSmerge right = new PsortSmerge(array, mid, high);
+            GPsortSmerge left = new GPsortSmerge(array, low, mid);
+            GPsortSmerge right = new GPsortSmerge(array, mid, high);
             left.fork();
             countFork++;
             edgeList.add(new Edge(this.getNode(), left.getNode()));

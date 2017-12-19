@@ -40,7 +40,7 @@ public class Test {
         benchPP(a3, 0, a3.length);
         //benchAlg(a4, 0, a4.length);
         try {
-            Utils.graphWrite(PsortPmerge.nodeList, PsortPmerge.edgeList);
+            Utils.graphWrite(GPsortPmerge.nodeList, GPsortPmerge.edgeList);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,9 +88,9 @@ public class Test {
      * @param high
      */
     static void benchPS(int[]array, int low, int high){
-        PsortSmerge sort = new PsortSmerge(array, low, high);
+        GPsortSmerge sort = new GPsortSmerge(array, low, high);
         long inizio = System.currentTimeMillis();
-        PsortSmerge.fjPool.invoke(sort);
+        GPsortSmerge.fjPool.invoke(sort);
         long fine = System.currentTimeMillis();
         //out.println(Arrays.toString(array));
         out.println(check(array));
@@ -108,9 +108,9 @@ public class Test {
     static void benchPP(int[]array, int low, int high){
         int[] aux = new int[array.length];
         System.arraycopy( array, 0, aux, 0, array.length );
-        PsortPmerge sort2 = new PsortPmerge(array, low, high, aux);
+        GPsortPmerge sort2 = new GPsortPmerge(array, low, high, aux);
         long inizio = System.currentTimeMillis();
-        PsortPmerge.fjPool.invoke(sort2);
+        GPsortPmerge.fjPool.invoke(sort2);
         long fine = System.currentTimeMillis();
         //out.println(Arrays.toString(array));
         out.println(check(array));
