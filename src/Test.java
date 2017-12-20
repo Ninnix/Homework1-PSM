@@ -117,7 +117,7 @@ public class Test {
     }
 
     /**
-     *
+     * Crea il DAG del mergesort paralleo con funzione di merge seriale
      * @param array
      * @param low
      * @param high
@@ -133,7 +133,7 @@ public class Test {
     }
 
     /**
-     *
+     * Crea il DAG del mergesort paralleo con funzione di merge parallela
      * @param array
      * @param low
      * @param high
@@ -150,7 +150,7 @@ public class Test {
     }
 
     /**
-     * Metodo che verifica che l’output sia corretto, ovvero che rispetta l’ordine crescente
+     * Metodo che verifica che l'ordinamento sia corretto, ovvero che rispetta l’ordine crescente
      * @param array
      * @return
      */
