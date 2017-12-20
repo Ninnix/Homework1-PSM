@@ -10,13 +10,13 @@ public class PsortSmerge extends RecursiveAction {
      * parallelo, mentre la funzione di merge è ancora sequienziale
      */
 
-    static final ForkJoinPool fjPool = new ForkJoinPool();
+    public static final ForkJoinPool fjPool = new ForkJoinPool();
     private int[] array;
     private int low;
     private int high;
     private int SEQUENTIAL_CUTOFF = 512;
 
-    PsortSmerge(int[] arr, int l, int h) {
+    public PsortSmerge(int[] arr, int l, int h) {
         array = arr;
         low = l;
         high = h;

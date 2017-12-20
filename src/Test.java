@@ -1,6 +1,4 @@
-import Bench.MergeSort;
-import Bench.Sorting;
-import Bench.Utils;
+import Bench.*;
 import Graph.GPsortPmerge;
 import Graph.GPsortSmerge;
 import java.io.IOException;
@@ -12,9 +10,11 @@ import static java.lang.System.out;
 public class Test {
 
     public static void main(String[] args) {
+
         int n = Integer.parseInt(args[0]); //Il valore n specificato da linea di comando;
         int lenght = n;
         int[] array = new int[lenght];
+        boolean graphMode = false;
 
         if (args[1].equals("A")) { // Tipologia A. sequenze decrescenti contenenti i valori interi da n a 1;
             for (int i = 0; i < lenght; i++) {
@@ -40,34 +40,15 @@ public class Test {
         System.arraycopy( array, 0, a3, 0, array.length );
         int[] a4 = new int[array.length];
         System.arraycopy( array, 0, a4, 0, array.length );
-        //benchS(a1,0, a1.length);
-        //benchPS(a2, 0, a2.length);
-        benchPP(a3, 0, a3.length);
-        //benchAlg(a4, 0, a4.length);
-        try {
-            Utils.graphWrite(GPsortPmerge.nodeList, GPsortPmerge.edgeList);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (graphMode == false) {
+            benchS(a1,0, a1.length);
+            benchPS(a2, 0, a2.length);
+            benchPP(a3, 0, a3.length);
+            //benchAlg(a4, 0, a4.length);
+        } else {
+            graphPS(a2, 0, a2.length);
+            //graphPP(a3, 0, a3.length);
         }
-    }
-
-    /**
-     * Metodo che verifica che l’output sia corretto, ovvero che rispetta l’ordine crescente
-     * @param array
-     * @return
-     */
-    static boolean check(int[] array) {
-        boolean ans = true;
-        for (int i = 0; i < array.length-1; i++){
-            if (array[i] <= array[i + 1]) {
-                ans = true;
-            }
-            else {
-                ans = false;
-                break;
-            }
-        }
-        return ans;
     }
 
     /**
@@ -93,9 +74,9 @@ public class Test {
      * @param high
      */
     static void benchPS(int[]array, int low, int high){
-        GPsortSmerge sort = new GPsortSmerge(array, low, high);
+        PsortSmerge sort = new PsortSmerge(array, low, high);
         long inizio = System.currentTimeMillis();
-        GPsortSmerge.fjPool.invoke(sort);
+        PsortSmerge.fjPool.invoke(sort);
         long fine = System.currentTimeMillis();
         //out.println(Arrays.toString(array));
         out.println(check(array));
@@ -113,9 +94,9 @@ public class Test {
     static void benchPP(int[]array, int low, int high){
         int[] aux = new int[array.length];
         System.arraycopy( array, 0, aux, 0, array.length );
-        GPsortPmerge sort2 = new GPsortPmerge(array, low, high, aux);
+        PsortPmerge sort2 = new PsortPmerge(array, low, high, aux);
         long inizio = System.currentTimeMillis();
-        GPsortPmerge.fjPool.invoke(sort2);
+        PsortPmerge.fjPool.invoke(sort2);
         long fine = System.currentTimeMillis();
         //out.println(Arrays.toString(array));
         out.println(check(array));
@@ -133,5 +114,57 @@ public class Test {
         out.println(check(array));
         out.println("L'algoritmo di sorting ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
+    }
+
+    /**
+     *
+     * @param array
+     * @param low
+     * @param high
+     */
+    static void graphPS (int[] array, int low, int high){
+        GPsortSmerge graphSort = new GPsortSmerge(array, low, high);
+        GPsortSmerge.fjPool.invoke(graphSort);
+        try {
+            Utils.graphWrite(GPsortSmerge.nodeList, GPsortSmerge.edgeList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param array
+     * @param low
+     * @param high
+     */
+    static void graphPP (int[] array, int low, int high) {
+        int[] aux = new int[array.length];
+        GPsortPmerge graphSort2 = new GPsortPmerge(array, low, high, aux);
+        GPsortPmerge.fjPool.invoke(graphSort2);
+        try {
+            Utils.graphWrite(GPsortPmerge.nodeList, GPsortPmerge.edgeList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo che verifica che l’output sia corretto, ovvero che rispetta l’ordine crescente
+     * @param array
+     * @return
+     */
+    static boolean check(int[] array) {
+        boolean ans = true;
+        for (int i = 0; i < array.length-1; i++){
+            if (array[i] <= array[i + 1]) {
+                ans = true;
+            }
+            else {
+                ans = false;
+                break;
+            }
+        }
+        return ans;
     }
 }

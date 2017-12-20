@@ -5,14 +5,14 @@ import java.util.concurrent.RecursiveAction;
 
 public class PsortPmerge extends RecursiveAction {
 
-    static final ForkJoinPool fjPool = new ForkJoinPool();
+    public static final ForkJoinPool fjPool = new ForkJoinPool();
     private int[] array;
     private int low;
     private int high;
     private int[] aux;
     private int SEQUENTIAL_CUTOFF = 512;
 
-    PsortPmerge(int[] arr, int l, int h, int[] aux) {
+    public PsortPmerge(int[] arr, int l, int h, int[] aux) {
         array = arr;
         low = l;
         high = h;
