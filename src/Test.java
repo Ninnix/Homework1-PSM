@@ -130,6 +130,7 @@ public class Test {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Il DAG di esecuzione del mergesort parallelo con funzione di merge seriale è stato rappresentato nel file graph.graphml");
     }
 
     /**
@@ -147,6 +148,7 @@ public class Test {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Il DAG di esecuzione del mergesort parallelo con funzione di merge parallela è stato rappresentato nel file graph.graphml");
     }
 
     /**

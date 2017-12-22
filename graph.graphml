@@ -117,14 +117,14 @@
         </y:ShapeNode>
       </data>
     </node>
-   <edge source="n0" target="n1"/>
    <edge source="n1" target="n3"/>
    <edge source="n1" target="n4"/>
+   <edge source="n0" target="n1"/>
+   <edge source="n3" target="n7"/>
+   <edge source="n4" target="n7"/>
    <edge source="n2" target="n5"/>
    <edge source="n2" target="n6"/>
-   <edge source="n3" target="n7"/>
    <edge source="n5" target="n8"/>
-   <edge source="n4" target="n7"/>
    <edge source="n6" target="n8"/>
    <edge source="n0" target="n2"/>
    <edge source="n7" target="n9"/>
