@@ -5,7 +5,7 @@ public class Edge {
     private int id;
     private Node source;
     private Node target;
-    private static int count = 0;
+    private static volatile int count = 0;
 
     public Edge(Node source, Node target) {
         this.id = increaseCount();

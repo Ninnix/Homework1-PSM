@@ -4,7 +4,7 @@ public class Node {
 
     private int id;
     private GroupInt label;
-    private static int count = 0;
+    private static volatile int count = 0;
 
     public Node(int l, int r) {
         this.id = increaseCount();
