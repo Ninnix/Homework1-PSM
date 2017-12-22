@@ -7,36 +7,59 @@ import java.util.List;
 
 public class Utils {
 
+    /**
+     * Scrive il file graph.graphml che può essere visualizzato su https://www.yworks.com/yed-live/
+     * @param nodes
+     * @param edges
+     * @return
+     */
     public static String graphToString(List<Node> nodes, List<Edge> edges) {
-        String header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-                "<gexf xmlns=\"http://www.gexf.net/1.2draft\" version=\"1.2\">\n" +
-                "<graph mode=\"static\" defaultedgetype=\"directed\">\n";
+        String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+                "<graphml\n" +
+                " xmlns=\"http://graphml.graphdrawing.org/xmlns\"\n" +
+                " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
+                " xmlns:y=\"http://www.yworks.com/xml/graphml\"\n" +
+                " xmlns:yed=\"http://www.yworks.com/xml/yed/3\"\n" +
+                " xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd\">\n" +
+                "  <key for=\"node\" id=\"d1\" yfiles.type=\"nodegraphics\"/>\n" +
+                "  <graph edgedefault=\"directed\" id=\"G\">\n";
         String stringNodes = nodeToString(nodes);
         String stringEdges = edgeToString(edges);
-        return header + stringNodes + stringEdges + "    </graph>\n" +
-                "</gexf>\n";
+        return header + stringNodes + stringEdges + "  </graph>\n" +
+                "</graphml>\n";
     }
 
     public static String nodeToString(List<Node> nodes) {
-        String out = "        <nodes>\n";
+        String out = "";
         for (Node node:nodes) {
-            out = out + "            <node id=" + '"' + node.getId() + '"' +" label=" + '"' + node.toString() + '"' + " />\n";
+            out = out +
+                    "    <node id=\"n" + node.getId() + "\">\n" +
+                    "      <data key=\"d1\">\n" +
+                    "        <y:ShapeNode>\n" +
+                    "          <y:Shape type=\"rectangle\"/>\n" +
+                    "          <y:Geometry height=\"30.0\" width=\"30.0\" x=\"0.0\" y=\"0.0\"/>\n" +
+                    "          <y:Fill color=\"#FFCC00\" transparent=\"false\"/>\n" +
+                    "          <y:BorderStyle color=\"#000000\" type=\"line\" width=\"1.0\"/>\n" +
+                    "          <y:NodeLabel>"+ node.toString() +"</y:NodeLabel>\n" +
+                    "        </y:ShapeNode>\n" +
+                    "      </data>\n" +
+                    "    </node>\n";
         }
-        return out + "        </nodes>\n";
+        return out;
     }
 
     public static String edgeToString(List<Edge> edges) {
-        String out = "        <edges>\n";
+        String out = "";
         for (Edge edge:edges) {
-            out = out + "            <edge id=" + '"' + edge.getId() + '"' + " source=" + '"' + edge.getSource().getId() + '"' + " target=" + '"' + edge.getTarget().getId() + '"' + " />\n";
+            out = out + "   <edge source=\"n" + edge.getSource().getId() + "\" target=\"n" + edge.getTarget().getId() +"\"/>\n";
         }
-        return out + "        </edges>\n";
+        return out;
     }
 
     public static void graphWrite(List<Node> nodes, List<Edge> edges) throws IOException {
         String out = graphToString(nodes, edges);
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream("graph.gexf"), "utf-8"))) {
+                new FileOutputStream("graph.graphml"), "utf-8"))) {
             writer.write(out);
         }
     }
