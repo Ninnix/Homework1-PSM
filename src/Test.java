@@ -9,12 +9,16 @@ import static java.lang.System.out;
 
 public class Test {
 
+    /**
+     * Main
+     * @param args
+     */
     public static void main(String[] args) {
 
         int n = Integer.parseInt(args[0]); //Il valore n specificato da linea di comando;
         int lenght = n;
         int[] array = new int[lenght];
-        boolean graphMode = true;
+        boolean graphMode = false;
 
         if (args[1].equals("A")) { // Tipologia A. sequenze decrescenti contenenti i valori interi da n a 1;
             for (int i = 0; i < lenght; i++) {
@@ -30,7 +34,7 @@ public class Test {
             }
         }
         else {
-            // ECCEZIONE: tipologia di input non corretta
+            throw new IllegalArgumentException("Tipologia di input non corretta");
         }
         //out.println(Arrays.toString(array)); // stampiamo l'array creata
         int[] a1 = array; //array del mergesort sequenziale
@@ -44,7 +48,6 @@ public class Test {
             benchS(a1,0, a1.length);
             benchPS(a2, 0, a2.length);
             benchPP(a3, 0, a3.length);
-            //benchAlg(a4, 0, a4.length);
         } else {
             graphPS(a2, 0, a2.length);
             //graphPP(a3, 0, a3.length);
@@ -52,7 +55,7 @@ public class Test {
     }
 
     /**
-     *
+     * Stampa il tempo di esecuzione del mergesort seriale sull'array di input
      * @param array
      * @param low
      * @param high
@@ -68,7 +71,7 @@ public class Test {
     }
 
     /**
-     *
+     * Stampa il tempo di esecuzione del mergesort parallelo con funzione di merge seriale, sull'array di input
      * @param array
      * @param low
      * @param high
@@ -86,7 +89,7 @@ public class Test {
     }
 
     /**
-     *
+     * Stampa il tempo di esecuzione del mergesort parallelo con funzione di merge parallela, sull'array di input
      * @param array
      * @param low
      * @param high
@@ -101,18 +104,6 @@ public class Test {
         //out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort parallelo ha impiegato: " +(fine-inizio)+
-                " millisecondi per ordinare " + array.length + " numeri \n" );
-    }
-
-    //messo per testare che algoritmo usare
-    static void benchAlg(int[]array, int low, int high){
-        long inizio = System.currentTimeMillis();
-        Sorting.insectionSort(array, low, high);
-        //Sorting.countingSort(array);
-        long fine = System.currentTimeMillis();
-        out.println(Arrays.toString(array));
-        out.println(check(array));
-        out.println("L'algoritmo di sorting ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " numeri \n" );
     }
 
@@ -152,21 +143,19 @@ public class Test {
     }
 
     /**
-     * Metodo che verifica che l'ordinamento sia corretto, ovvero che rispetta l’ordine crescente
+     * Verifica che l'ordinamento sia corretto, ovvero che rispetta l’ordine crescente
      * @param array
      * @return
      */
     static boolean check(int[] array) {
         boolean ans = true;
-        for (int i = 0; i < array.length-1; i++){
-            if (array[i] <= array[i + 1]) {
-                ans = true;
-            }
-            else {
+        for (int i = 0; i < array.length-1; i++) {
+            if (array[i] > array[i + 1]) {
                 ans = false;
                 break;
             }
         }
         return ans;
     }
+
 }
