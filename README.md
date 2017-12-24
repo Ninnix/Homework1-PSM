@@ -6,6 +6,5 @@ LINK DESCRIZIONE --> https://drive.google.com/file/d/1xrKUqgSgm7e9OWoBvKJl5u9V_Q
 
 TUTORIAL:
 
-Il file graph.grphml deve essere visualizzato tramite yEd Live --> https://www.yworks.com/yed-live/.
-Deve essere aperto tramite il menù laterale e succesivamente si deve fare click su layout e premere
-il bottone apply che applica l'ordinamento gerarchico. 
+I file graphPS.graphml e graphPP.graphml devono essere visualizzati tramite yEd Live --> https://www.yworks.com/yed-live/.
+Alla prima apertura del sito possono essere aperti cliccando su "open existing document", si aprirà un menù laterale, in cui si dovrà cliccare su open e successivamente su "from local file". Successivamnte dovremmo individuare il path nel file solitamente (C:\Users\username\IdeaProjects). Una volta trovato e selezionato dovremmo impartire l'odine gerarchico del DAG, si deve fare click su layout e premere il bottone apply, ed il gioco è fatto! 
