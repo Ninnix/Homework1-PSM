@@ -1,10 +1,14 @@
 import Bench.*;
+import Graph.GParallelMerge;
 import Graph.GPsortPmerge;
 import Graph.GPsortSmerge;
+import Graph.Node;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 import static java.lang.System.out;
+import static java.lang.System.setOut;
 
 
 public class Test {
@@ -18,7 +22,7 @@ public class Test {
         int n = Integer.parseInt(args[0]); //Il valore n specificato da linea di comando;
         int lenght = n;
         int[] array = new int[lenght];
-        boolean graphMode = false;
+        boolean graphMode = true;
 
         if (args[1].equals("A")) { // Tipologia A. sequenze decrescenti contenenti i valori interi da n a 1;
             for (int i = 0; i < lenght; i++) {
@@ -50,12 +54,13 @@ public class Test {
             benchPP(a3, 0, a3.length);
         } else {
             graphPS(a2, 0, a2.length);
-            //graphPP(a3, 0, a3.length);
+            Node.setCount(0); //azzero gli id dei nodi
+            graphPP(a3, 0, a3.length);
         }
     }
 
     /**
-     * Stampa il tempo di esecuzione del mergesort seriale sull'array di input
+     * Stampa il tempo di esecuzione del mergesort sequenziale sull'array di input
      * @param array
      * @param low
      * @param high
@@ -67,11 +72,11 @@ public class Test {
         //out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort seriale ha impiegato: " +(fine-inizio)+
-                " millisecondi per ordinare " + array.length + " numeri \n" );
+                " millisecondi per ordinare " + array.length + " interi \n" );
     }
 
     /**
-     * Stampa il tempo di esecuzione del mergesort parallelo con funzione di merge seriale, sull'array di input
+     * Stampa il tempo di esecuzione del mergesort parallelo con funzione di merge sequenziale, sull'array di input
      * @param array
      * @param low
      * @param high
@@ -84,7 +89,7 @@ public class Test {
         //out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort parallelo con funzione di merge seriale ha impiegato: " +(fine-inizio)+
-                " millisecondi per ordinare " + array.length + " numeri \n" );
+                " millisecondi per ordinare " + array.length + " interi \n" );
 
     }
 
@@ -104,11 +109,11 @@ public class Test {
         //out.println(Arrays.toString(array));
         out.println(check(array));
         out.println("Il mergesort parallelo ha impiegato: " +(fine-inizio)+
-                " millisecondi per ordinare " + array.length + " numeri \n" );
+                " millisecondi per ordinare " + array.length + " interi \n" );
     }
 
     /**
-     * Crea il DAG del mergesort paralleo con funzione di merge seriale
+     * Crea il DAG del mergesort paralleo con funzione di merge sequenziale
      * @param array
      * @param low
      * @param high
@@ -121,7 +126,9 @@ public class Test {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Il DAG di esecuzione del mergesort parallelo con funzione di merge seriale è stato rappresentato nel file graph.graphml");
+        System.out.println("Il mergesort parallelo con funzione di merge sequenziale ha effettuato " + GPsortSmerge.getCountFork() + " fork, con un cutoff sequenziale di " +
+                GPsortSmerge.getSEQUENTIAL_CUTOFF()+ " per ordinare " + array.length + " interi \n");
+        System.out.println("Il DAG di esecuzione del mergesort parallelo con funzione di merge sequenziale è stato rappresentato nel file graphPS.graphml\n");
     }
 
     /**
@@ -135,11 +142,13 @@ public class Test {
         GPsortPmerge graphSort2 = new GPsortPmerge(array, low, high, aux);
         GPsortPmerge.fjPool.invoke(graphSort2);
         try {
-            Utils.graphWrite(GPsortPmerge.nodeList, GPsortPmerge.edgeList);
+            Utils.graphWrite2(GPsortPmerge.nodeList, GPsortPmerge.edgeList);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Il DAG di esecuzione del mergesort parallelo con funzione di merge parallela è stato rappresentato nel file graph.graphml");
+        System.out.println("Il mergesort parallelo con funzione di merge parallela ha effettuato " + GPsortPmerge.getCountFork() + " fork, con un cutoff sequenziale per il sort di " +
+                GPsortPmerge.getSEQUENTIAL_CUTOFF() + " e di " + GParallelMerge.getSEQUENTIAL_CUTOFF() + " per il merge parallelo," + " per ordinare " + array.length + " interi \n" );
+        System.out.println("Il DAG di esecuzione del mergesort parallelo con funzione di merge parallela è stato rappresentato nel file graphPP.graphml\n");
     }
 
     /**

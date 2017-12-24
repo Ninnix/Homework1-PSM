@@ -28,6 +28,9 @@ public class Node {
         this.label = new QuadInt(l1, r1, l2, r2);
     }
 
+    public static void setCount(int count) {
+        Node.count = count;
+    }
 
     @Override
     public String toString() {

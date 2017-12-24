@@ -14,12 +14,13 @@ public class GPsortPmerge extends RecursiveAction {
     private int low;
     private int high;
     private int[] aux;
-    private int SEQUENTIAL_CUTOFF = 512;
+    private static int SEQUENTIAL_CUTOFF = 512;
+    static volatile int countFork = 0;
     private Node node;
     private Node nodeJ;
     public static List<Node> nodeList = Collections.synchronizedList(new ArrayList<Node>());
     public static List<Edge> edgeList = Collections.synchronizedList(new ArrayList<Edge>());
-    public static volatile int countFork = 0;
+
 
     public GPsortPmerge(int[] arr, int l, int h, int[] aux) {
         array = arr;
@@ -36,6 +37,14 @@ public class GPsortPmerge extends RecursiveAction {
 
     public Node getNodeJ() {
         return nodeJ;
+    }
+
+    public static int getSEQUENTIAL_CUTOFF() {
+        return SEQUENTIAL_CUTOFF;
+    }
+
+    public static int getCountFork() {
+        return countFork;
     }
 
     @Override

@@ -59,7 +59,15 @@ public class Utils {
     public static void graphWrite(List<Node> nodes, List<Edge> edges) throws IOException {
         String out = graphToString(nodes, edges);
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream("graph.graphml"), "utf-8"))) {
+                new FileOutputStream("graphPS.graphml"), "utf-8"))) {
+            writer.write(out);
+        }
+    }
+
+    public static void graphWrite2(List<Node> nodes, List<Edge> edges) throws IOException {
+        String out = graphToString(nodes, edges);
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream("graphPP.graphml"), "utf-8"))) {
             writer.write(out);
         }
     }

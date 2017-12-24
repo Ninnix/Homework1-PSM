@@ -15,13 +15,11 @@ public class GParallelMerge extends RecursiveAction {
     private int dxHigh;
     private int auxLow;
     private int auxHigh;
-    private int SEQUENTIAL_CUTOFF = 1024;
+    private static int SEQUENTIAL_CUTOFF = 1024;
     private Node node;
+    private Node nodeJ;
     public List<Node> nodeList = GPsortPmerge.nodeList;
     public List<Edge> edgeList = GPsortPmerge.edgeList;
-    public int countFork = GPsortPmerge.countFork;
-
-    private Node nodeJ;
 
     GParallelMerge(int[] arr, int sxL, int sxH, int dxL, int dxH, int[] aux, int auxL, int auxH) {
         array = arr;
@@ -42,6 +40,10 @@ public class GParallelMerge extends RecursiveAction {
 
     public Node getNodeJ() {
         return nodeJ;
+    }
+
+    public static int getSEQUENTIAL_CUTOFF() {
+        return SEQUENTIAL_CUTOFF;
     }
 
     @Override
@@ -89,11 +91,10 @@ public class GParallelMerge extends RecursiveAction {
             GParallelMerge left = new GParallelMerge(array, sxLow, sxMed, dxLow, dxInd, aux, auxLow,auxLow + auxInd);
             GParallelMerge right = new GParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxLow + auxInd, auxHigh);
             left.fork();
-            countFork++;
+            GPsortPmerge.countFork++;
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));
-            GPsortPmerge.countFork++;
             left.join();
             nodeJ = new Node(auxLow, auxHigh);
             nodeList.add(nodeJ);
