@@ -15,7 +15,7 @@ public class Test {
 
     /**
      * Main
-     * @param args
+     * @param args Numero di interi, tipologia di input(A o B), L’opzione di debugging se attivata o meno (true o false)
      */
     public static void main(String[] args) {
 
