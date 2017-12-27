@@ -1,15 +1,8 @@
 import Bench.*;
-import Graph.GParallelMerge;
-import Graph.GPsortPmerge;
-import Graph.GPsortSmerge;
-import Graph.Node;
-
+import Graph.*;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Random;
 import static java.lang.System.out;
-import static java.lang.System.setOut;
-
 
 public class Test {
 
@@ -46,12 +39,15 @@ public class Test {
         System.arraycopy( array, 0, a2, 0, array.length );
         int[] a3 = new int[array.length];
         System.arraycopy( array, 0, a3, 0, array.length );
-        int[] a4 = new int[array.length];
-        System.arraycopy( array, 0, a4, 0, array.length );
         if (graphMode == false) {
-            benchS(a1,0, a1.length);
-            benchPS(a2, 0, a2.length);
-            benchPP(a3, 0, a3.length);
+            //benchS(a1,0, a1.length);
+            //benchPS(a2, 0, a2.length);
+            //benchPP(a3, 0, a3.length);
+            //multiS(a1, 0, a1.length);
+            //multiPS(a2, 0, a2.length);
+            //multiPP(a3, 0, a3.length);
+            speedup(a1, 0, a1.length);
+
         } else {
             graphPS(a2, 0, a2.length);
             Node.setCount(0); //azzero gli id dei nodi
@@ -65,7 +61,7 @@ public class Test {
      * @param low
      * @param high
      */
-    static void benchS(int[]array, int low, int high){
+    static long benchS(int[]array, int low, int high){
         long inizio = System.currentTimeMillis();
         MergeSort.mergeSort(array,low,high);
         long fine = System.currentTimeMillis();
@@ -73,6 +69,7 @@ public class Test {
         out.println(check(array));
         out.println("Il mergesort seriale ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " interi \n" );
+        return fine-inizio;
     }
 
     /**
@@ -81,7 +78,7 @@ public class Test {
      * @param low
      * @param high
      */
-    static void benchPS(int[]array, int low, int high){
+    static long benchPS(int[]array, int low, int high){
         PsortSmerge sort = new PsortSmerge(array, low, high);
         long inizio = System.currentTimeMillis();
         PsortSmerge.fjPool.invoke(sort);
@@ -90,7 +87,7 @@ public class Test {
         out.println(check(array));
         out.println("Il mergesort parallelo con funzione di merge seriale ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " interi \n" );
-
+        return fine-inizio;
     }
 
     /**
@@ -99,7 +96,7 @@ public class Test {
      * @param low
      * @param high
      */
-    static void benchPP(int[]array, int low, int high){
+    static  long benchPP(int[]array, int low, int high){
         int[] aux = new int[array.length];
         System.arraycopy( array, 0, aux, 0, array.length );
         PsortPmerge sort2 = new PsortPmerge(array, low, high, aux);
@@ -110,6 +107,7 @@ public class Test {
         out.println(check(array));
         out.println("Il mergesort parallelo ha impiegato: " +(fine-inizio)+
                 " millisecondi per ordinare " + array.length + " interi \n" );
+        return fine-inizio;
     }
 
     /**
@@ -165,6 +163,81 @@ public class Test {
             }
         }
         return ans;
+    }
+
+    static long multiS (int[]array, int low, int high){
+        int[] a1 = array;
+        int[] a2 = new int[array.length];
+        System.arraycopy( array, 0, a2, 0, array.length );
+        int[] a3 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        int[] a4 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        int[] a5 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        long t1 = benchS(a1, low, high);
+        long t2 = benchS(a2, low, high);
+        long t3 = benchS(a3, low, high);
+        long t4 = benchS(a4, low, high);
+        long t5 = benchS(a5, low, high);
+        long mediaS = (t1+t2+t3+t4+t5)/5;
+        System.out.println("Il mergesort seriale ha impiegato in media " + mediaS + " millisecondi \n");
+        return mediaS;
+    }
+
+    static long multiPS (int[]array, int low, int high){
+        int[] a1 = array;
+        int[] a2 = new int[array.length];
+        System.arraycopy( array, 0, a2, 0, array.length );
+        int[] a3 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        int[] a4 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        int[] a5 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        long t1 = benchPS(a1, low, high);
+        long t2 = benchPS(a2, low, high);
+        long t3 = benchPS(a3, low, high);
+        long t4 = benchPS(a4, low, high);
+        long t5 = benchPS(a5, low, high);
+        long mediaPS = (t1+t2+t3+t4+t5)/5;
+        System.out.println("Il mergesort parallelo con funzione di merge sequenziale ha impiegatoin media " + mediaPS + " millisecondi \n");
+        return mediaPS;
+    }
+
+    static long multiPP (int[]array, int low, int high){
+        int[] a1 = array;
+        int[] a2 = new int[array.length];
+        System.arraycopy( array, 0, a2, 0, array.length );
+        int[] a3 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        int[] a4 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        int[] a5 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        long t1 = benchPP(a1, low, high);
+        long t2 = benchPP(a2, low, high);
+        long t3 = benchPP(a3, low, high);
+        long t4 = benchPP(a4, low, high);
+        long t5 = benchPP(a5, low, high);
+        long mediaPP = (t1+t2+t3+t4+t5)/5;
+        System.out.println("Il mergesort  parallelo con funzione di merge parallela ha impiegato in media " + mediaPP + " millisecondi \n");
+        return mediaPP;
+    }
+
+    static void speedup (int[]array, int low, int high) {
+        int[] a1 = array;
+        int[] a2 = new int[array.length];
+        System.arraycopy( array, 0, a2, 0, array.length );
+        int[] a3 = new int[array.length];
+        System.arraycopy( array, 0, a3, 0, array.length );
+        long tS = benchS(a1,0, a1.length);
+        long tPS = benchPS(a2, 0, a2.length);
+        long tPP = benchPP(a3, 0, a3.length);
+        double spPS = ((double)tS / tPS);
+        double spPP = ((double)tS / tPP);
+        System.out.println("Il mergesort parallelo con funzione di merge sequenziale ha avuto speedup " + spPS + " rispetto al mergesort sequenziale \n");
+        System.out.println("Il mergesort parallelo con con funzione di merge parallela ha avuto speedup " + spPP + " rispetto al mergesort sequenziale \n");
     }
 
 }

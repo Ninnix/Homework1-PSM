@@ -24,7 +24,8 @@ public class PsortPmerge extends RecursiveAction {
         int mid = (low + high) / 2;
         //if ((high-low) <= 1) return;
         if ((high - low) < SEQUENTIAL_CUTOFF){
-            MergeSort.mergeSort(array,low,high);
+            Sorting.insectionSort(array, low, high);
+            //MergeSort.mergeSort(array,low,high);
         }
         else{
             PsortPmerge left = new PsortPmerge(array, low, mid, aux);

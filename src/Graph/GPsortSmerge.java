@@ -69,14 +69,14 @@ public class GPsortSmerge extends RecursiveAction {
             nodeJ = new Node(low, high);
             nodeList.add(nodeJ);
 
-            if (Objects.equals(left.getNodeJ(), null)){
+            if (Objects.equals(left.getNodeJ(), null)) {
                 edgeList.add(new Edge(left.getNode(), nodeJ));
-            }else
+            } else
                 edgeList.add(new Edge(left.getNodeJ(), nodeJ));
 
-            if (Objects.equals(right.getNodeJ(), null)){
+            if (Objects.equals(right.getNodeJ(), null)) {
                 edgeList.add(new Edge(right.getNode(), nodeJ));
-            }else
+            } else
                 edgeList.add(new Edge(right.getNodeJ(), nodeJ));
 
             Bench.MergeSort.serialMerge(array, low, mid, high);
