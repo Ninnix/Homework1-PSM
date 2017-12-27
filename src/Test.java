@@ -22,7 +22,7 @@ public class Test {
         int n = Integer.parseInt(args[0]); //Il valore n specificato da linea di comando;
         int lenght = n;
         int[] array = new int[lenght];
-        boolean graphMode = true;
+        boolean graphMode = Boolean.parseBoolean(args[2]);
 
         if (args[1].equals("A")) { // Tipologia A. sequenze decrescenti contenenti i valori interi da n a 1;
             for (int i = 0; i < lenght; i++) {
