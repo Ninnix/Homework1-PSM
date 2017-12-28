@@ -26,7 +26,7 @@ public class Test {
         else if (args[1].equals("B")){ // Tipologia B. sequenze di n numeri casuali.
             for (int i = 0; i < lenght; i++) {
                 Random rn = new Random();
-                int random = rn.nextInt(1000) ;
+                int random = rn.nextInt(lenght) ;
                 array[i] = random;
             }
         }
@@ -201,7 +201,7 @@ public class Test {
         long t4 = benchPS(a4, low, high);
         long t5 = benchPS(a5, low, high);
         long mediaPS = (t1+t2+t3+t4+t5)/5;
-        System.out.println("Il mergesort parallelo con funzione di merge sequenziale ha impiegatoin media " + mediaPS + " millisecondi \n");
+        System.out.println("Il mergesort parallelo con funzione di merge sequenziale ha impiegato in media " + mediaPS + " millisecondi \n");
         return mediaPS;
     }
 
