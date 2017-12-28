@@ -231,9 +231,9 @@ public class Test {
         System.arraycopy( array, 0, a2, 0, array.length );
         int[] a3 = new int[array.length];
         System.arraycopy( array, 0, a3, 0, array.length );
-        long tS = benchS(a1,0, a1.length);
-        long tPS = benchPS(a2, 0, a2.length);
-        long tPP = benchPP(a3, 0, a3.length);
+        long tS = multiS(a1,0, a1.length);
+        long tPS = multiPS(a2, 0, a2.length);
+        long tPP = multiPP(a3, 0, a3.length);
         double spPS = ((double)tS / tPS);
         double spPP = ((double)tS / tPP);
         System.out.println("Il mergesort parallelo con funzione di merge sequenziale ha avuto speedup " + spPS + " rispetto al mergesort sequenziale \n");
