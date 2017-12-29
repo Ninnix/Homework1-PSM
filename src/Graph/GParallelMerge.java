@@ -92,10 +92,10 @@ public class GParallelMerge extends RecursiveAction {
             int auxInd = (sxMed - sxLow) + (dxInd - dxLow); //numero elementi (indice) piu' piccoli del sxMed
             GParallelMerge left = new GParallelMerge(array, sxLow, sxMed, dxLow, dxInd, aux, auxLow,auxLow + auxInd);
             GParallelMerge right = new GParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxLow + auxInd, auxHigh);
-            left.fork();
-            GPsortPmerge.countFork++;
             left.getNode().changeColor();
             right.getNode().setColor(this.getNode().getColor());
+            left.fork();
+            GPsortPmerge.countFork++;
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));

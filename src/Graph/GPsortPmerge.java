@@ -58,10 +58,10 @@ public class GPsortPmerge extends RecursiveAction {
          else {
             GPsortPmerge left = new GPsortPmerge(array, low, mid, aux);
             GPsortPmerge right = new GPsortPmerge(array, mid, high, aux);
-            left.fork();
-            countFork++;
             left.getNode().changeColor();
             right.getNode().setColor(this.getNode().getColor());
+            left.fork();
+            countFork++;
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));
