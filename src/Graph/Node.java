@@ -7,7 +7,7 @@ public class Node {
     private int id;
     private GroupInt label;
     private String color = "#FFCC00";
-    String[] colors = {"#F0F8FF","#DC143C","#FF8C00","#1E90FF","#FFD700","#FFA500", "#32CD32", "#FF4500", "#6A5ACD", "#008080","#4682B4","#CD853F", "#DB7093", "#CD5C5C", "#DAA520","#87CEFA", "#FFC0CB", "#FA8072", "#DEB887" };
+    String[] colors = {"#F0F8FF","#DC143C","#FF8C00","#1E90FF","#008000","#FFA500", "#32CD32", "#FF4500", "#6A5ACD", "#008080","#4682B4","#CD853F", "#DB7093", "#CD5C5C", "#DAA520","#87CEFA", "#FFC0CB", "#FA8072", "#DEB887" };
     private static volatile int count = 0;
 
     /**

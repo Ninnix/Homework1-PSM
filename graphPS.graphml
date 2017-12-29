@@ -14,7 +14,7 @@
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(0,8)</y:NodeLabel>
+          <y:NodeLabel>(0,10)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -23,9 +23,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#DB7093" transparent="false"/>
+          <y:Fill color="#FA8072" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(0,4)</y:NodeLabel>
+          <y:NodeLabel>(0,5)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -36,7 +36,7 @@
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(4,8)</y:NodeLabel>
+          <y:NodeLabel>(5,10)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -45,7 +45,7 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#DAA520" transparent="false"/>
+          <y:Fill color="#DEB887" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel>(0,2)</y:NodeLabel>
         </y:ShapeNode>
@@ -56,9 +56,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#DB7093" transparent="false"/>
+          <y:Fill color="#FA8072" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(2,4)</y:NodeLabel>
+          <y:NodeLabel>(2,5)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -67,9 +67,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#FF8C00" transparent="false"/>
+          <y:Fill color="#1E90FF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(0,1)</y:NodeLabel>
+          <y:NodeLabel>(5,7)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -80,7 +80,7 @@
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
           <y:Fill color="#DAA520" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(1,2)</y:NodeLabel>
+          <y:NodeLabel>(2,3)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -89,9 +89,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#FFD700" transparent="false"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(2,3)</y:NodeLabel>
+          <y:NodeLabel>(7,10)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -100,9 +100,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#DB7093" transparent="false"/>
+          <y:Fill color="#FA8072" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(3,4)</y:NodeLabel>
+          <y:NodeLabel>(3,5)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -111,9 +111,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#DAA520" transparent="false"/>
+          <y:Fill color="#1E90FF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(0,2)</y:NodeLabel>
+          <y:NodeLabel>(3,4)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -122,9 +122,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#DB7093" transparent="false"/>
+          <y:Fill color="#FA8072" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(2,4)</y:NodeLabel>
+          <y:NodeLabel>(4,5)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -133,9 +133,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#CD5C5C" transparent="false"/>
+          <y:Fill color="#FA8072" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(4,6)</y:NodeLabel>
+          <y:NodeLabel>(3,5)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -144,9 +144,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#CD5C5C" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(6,8)</y:NodeLabel>
+          <y:NodeLabel>(7,8)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -155,9 +155,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#FF4500" transparent="false"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(4,5)</y:NodeLabel>
+          <y:NodeLabel>(8,10)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -166,9 +166,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#CD5C5C" transparent="false"/>
+          <y:Fill color="#4682B4" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(5,6)</y:NodeLabel>
+          <y:NodeLabel>(8,9)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -177,9 +177,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#CD5C5C" transparent="false"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(4,6)</y:NodeLabel>
+          <y:NodeLabel>(9,10)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -188,9 +188,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#FFC0CB" transparent="false"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(6,7)</y:NodeLabel>
+          <y:NodeLabel>(8,10)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -199,9 +199,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#008080" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(7,8)</y:NodeLabel>
+          <y:NodeLabel>(5,6)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -210,9 +210,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#DB7093" transparent="false"/>
+          <y:Fill color="#1E90FF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(0,4)</y:NodeLabel>
+          <y:NodeLabel>(6,7)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -221,9 +221,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#1E90FF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(6,8)</y:NodeLabel>
+          <y:NodeLabel>(5,7)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -232,9 +232,9 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#FA8072" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(4,8)</y:NodeLabel>
+          <y:NodeLabel>(2,5)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
@@ -243,39 +243,113 @@
         <y:ShapeNode>
           <y:Shape type="rectangle"/>
           <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#FA8072" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel>(0,8)</y:NodeLabel>
+          <y:NodeLabel>(0,1)</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
-   <edge source="n3" target="n5"/>
-   <edge source="n1" target="n3"/>
-   <edge source="n3" target="n6"/>
-   <edge source="n4" target="n7"/>
-   <edge source="n4" target="n8"/>
-   <edge source="n5" target="n9"/>
-   <edge source="n6" target="n9"/>
-   <edge source="n7" target="n10"/>
-   <edge source="n8" target="n10"/>
+    <node id="n22">
+      <data key="d1">
+        <y:ShapeNode>
+          <y:Shape type="rectangle"/>
+          <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
+          <y:Fill color="#DEB887" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel>(1,2)</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n23">
+      <data key="d1">
+        <y:ShapeNode>
+          <y:Shape type="rectangle"/>
+          <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
+          <y:Fill color="#DEB887" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel>(0,2)</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n24">
+      <data key="d1">
+        <y:ShapeNode>
+          <y:Shape type="rectangle"/>
+          <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
+          <y:Fill color="#FA8072" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel>(0,5)</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n25">
+      <data key="d1">
+        <y:ShapeNode>
+          <y:Shape type="rectangle"/>
+          <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel>(7,10)</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n26">
+      <data key="d1">
+        <y:ShapeNode>
+          <y:Shape type="rectangle"/>
+          <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel>(5,10)</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n27">
+      <data key="d1">
+        <y:ShapeNode>
+          <y:Shape type="rectangle"/>
+          <y:Geometry height="30.0" width="30.0" x="0.0" y="0.0"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel>(0,10)</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
    <edge source="n0" target="n1"/>
-   <edge source="n11" target="n13"/>
-   <edge source="n11" target="n14"/>
+   <edge source="n1" target="n3"/>
+   <edge source="n4" target="n6"/>
+   <edge source="n8" target="n9"/>
+   <edge source="n8" target="n10"/>
+   <edge source="n2" target="n5"/>
+   <edge source="n7" target="n12"/>
+   <edge source="n9" target="n11"/>
+   <edge source="n10" target="n11"/>
+   <edge source="n13" target="n14"/>
    <edge source="n13" target="n15"/>
-   <edge source="n14" target="n15"/>
-   <edge source="n2" target="n11"/>
-   <edge source="n1" target="n4"/>
-   <edge source="n9" target="n18"/>
-   <edge source="n10" target="n18"/>
-   <edge source="n12" target="n16"/>
-   <edge source="n12" target="n17"/>
-   <edge source="n16" target="n19"/>
+   <edge source="n14" target="n16"/>
+   <edge source="n15" target="n16"/>
+   <edge source="n5" target="n17"/>
+   <edge source="n5" target="n18"/>
    <edge source="n17" target="n19"/>
-   <edge source="n2" target="n12"/>
-   <edge source="n15" target="n20"/>
-   <edge source="n19" target="n20"/>
+   <edge source="n18" target="n19"/>
+   <edge source="n4" target="n8"/>
+   <edge source="n6" target="n20"/>
+   <edge source="n11" target="n20"/>
+   <edge source="n1" target="n4"/>
+   <edge source="n3" target="n21"/>
+   <edge source="n3" target="n22"/>
+   <edge source="n21" target="n23"/>
+   <edge source="n22" target="n23"/>
+   <edge source="n23" target="n24"/>
+   <edge source="n20" target="n24"/>
+   <edge source="n7" target="n13"/>
+   <edge source="n12" target="n25"/>
+   <edge source="n16" target="n25"/>
+   <edge source="n2" target="n7"/>
+   <edge source="n19" target="n26"/>
+   <edge source="n25" target="n26"/>
    <edge source="n0" target="n2"/>
-   <edge source="n18" target="n21"/>
-   <edge source="n20" target="n21"/>
+   <edge source="n24" target="n27"/>
+   <edge source="n26" target="n27"/>
   </graph>
 </graphml>
