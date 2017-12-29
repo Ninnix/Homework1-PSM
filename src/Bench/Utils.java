@@ -38,7 +38,7 @@ public class Utils {
                     "        <y:ShapeNode>\n" +
                     "          <y:Shape type=\"rectangle\"/>\n" +
                     "          <y:Geometry height=\"30.0\" width=\"30.0\" x=\"0.0\" y=\"0.0\"/>\n" +
-                    "          <y:Fill color=\"#FFCC00\" transparent=\"false\"/>\n" +
+                    "          <y:Fill color=\""+ node.getColor() +"\" transparent=\"false\"/>\n" +
                     "          <y:BorderStyle color=\"#000000\" type=\"line\" width=\"1.0\"/>\n" +
                     "          <y:NodeLabel>"+ node.toString() +"</y:NodeLabel>\n" +
                     "        </y:ShapeNode>\n" +

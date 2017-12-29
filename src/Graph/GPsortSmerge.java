@@ -18,7 +18,7 @@ public class GPsortSmerge extends RecursiveAction {
     private int[] array;
     private int low;
     private int high;
-    private static int SEQUENTIAL_CUTOFF = 512;
+    private static int SEQUENTIAL_CUTOFF = 1;
     private static volatile int countFork = 0;
     private Node node;
     private Node nodeJ;
@@ -51,7 +51,7 @@ public class GPsortSmerge extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if ((high-low) <= 1) return;
+        if ((high-low) <= 1) return;  //caso base per cutoff > 1
         /**
         if ((high - low) < SEQUENTIAL_CUTOFF){
             Sorting.insectionSort(array, low, high);
@@ -62,12 +62,15 @@ public class GPsortSmerge extends RecursiveAction {
             GPsortSmerge right = new GPsortSmerge(array, mid, high);
             left.fork();
             countFork++;
+            left.getNode().changeColor();
+            right.getNode().setColor(this.getNode().getColor());
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));
             left.join();
             nodeJ = new Node(low, high);
             nodeList.add(nodeJ);
+            this.getNodeJ().setColor(right.getNode().getColor());
 
             if (Objects.equals(left.getNodeJ(), null)) {
                 edgeList.add(new Edge(left.getNode(), nodeJ));

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Random;
 import static java.lang.System.out;
 
-public class Test {
+public class Main {
 
     /**
      * Main
@@ -43,10 +43,10 @@ public class Test {
             //benchS(a1,0, a1.length);
             //benchPS(a2, 0, a2.length);
             //benchPP(a3, 0, a3.length);
-            //multiS(a1, 0, a1.length);
-            //multiPS(a2, 0, a2.length);
-            //multiPP(a3, 0, a3.length);
-            speedup(a1, 0, a1.length);
+            multiS(a1, 0, a1.length);
+            multiPS(a2, 0, a2.length);
+            multiPP(a3, 0, a3.length);
+            //speedup(a1, 0, a1.length);
 
         } else {
             graphPS(a2, 0, a2.length);

@@ -14,7 +14,7 @@ public class GPsortPmerge extends RecursiveAction {
     private int low;
     private int high;
     private int[] aux;
-    private static int SEQUENTIAL_CUTOFF = 512;
+    private static int SEQUENTIAL_CUTOFF = 1;
     static volatile int countFork = 0;
     private Node node;
     private Node nodeJ;
@@ -50,7 +50,7 @@ public class GPsortPmerge extends RecursiveAction {
     @Override
     protected void compute() {
         int mid = (low + high) / 2;
-        if ((high-low) <= 1) return;
+        if ((high-low) <= 1) return; //caso base per cutoff = 1
         /**
         if ((high - low) < SEQUENTIAL_CUTOFF){
             MergeSort.mergeSort(array,low,high);
@@ -60,6 +60,8 @@ public class GPsortPmerge extends RecursiveAction {
             GPsortPmerge right = new GPsortPmerge(array, mid, high, aux);
             left.fork();
             countFork++;
+            left.getNode().changeColor();
+            right.getNode().setColor(this.getNode().getColor());
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));
@@ -69,6 +71,7 @@ public class GPsortPmerge extends RecursiveAction {
             }
             GParallelMerge parmerge = new GParallelMerge(array, low, mid, mid, high, aux, low, high);
             Node nodeAux = parmerge.getNode();
+            nodeAux.setColor(right.getNode().getColor());
             if (Objects.equals(left.getNodeJ(), null)){
                 edgeList.add(new Edge(left.getNode(), nodeAux));
             }else

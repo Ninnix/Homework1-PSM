@@ -1,9 +1,13 @@
 package Graph;
 
+import java.util.Random;
+
 public class Node {
 
     private int id;
     private GroupInt label;
+    private String color = "#FFCC00";
+    String[] colors = {"#F0F8FF","#DC143C","#FF8C00","#1E90FF","#FFD700","#FFA500", "#32CD32", "#FF4500", "#6A5ACD", "#008080","#4682B4","#CD853F", "#DB7093", "#CD5C5C", "#DAA520","#87CEFA", "#FFC0CB", "#FA8072" };
     private static volatile int count = 0;
 
     /**
@@ -14,6 +18,7 @@ public class Node {
     public Node(int l, int r) {
         this.id = increaseCount();
         this.label = new PairInt(l, r);
+
     }
 
     /**
@@ -43,5 +48,20 @@ public class Node {
 
     public int getId() {
         return id;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void changeColor() {
+        Random rn = new Random();
+        int random = rn.nextInt(colors.length) ;
+        String color = colors[random];
+        this.color = color;
     }
 }

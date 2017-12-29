@@ -15,7 +15,7 @@ public class GParallelMerge extends RecursiveAction {
     private int dxHigh;
     private int auxLow;
     private int auxHigh;
-    private static int SEQUENTIAL_CUTOFF = 1024;
+    private static int SEQUENTIAL_CUTOFF = 1;
     private Node node;
     private Node nodeJ;
     public List<Node> nodeList = GPsortPmerge.nodeList;
@@ -65,6 +65,7 @@ public class GParallelMerge extends RecursiveAction {
             lenSx = lenDx;
             lenDx = appoggio;
         }
+        //caso base per cutoff > 1
         if (lenSx == 1 && lenDx == 1) {
             if (aux[sxLow] <= aux[dxLow]) {
                 array[auxLow] = aux[sxLow];
@@ -79,6 +80,7 @@ public class GParallelMerge extends RecursiveAction {
             array[auxLow] = aux[sxLow];
             return;
         }
+        //caso base per cutoff > 1
         /**
         if (lenSx < SEQUENTIAL_CUTOFF) {
             Sorting.serialMerge2(array,sxLow,sxHigh,dxLow,dxHigh,aux,auxLow,auxHigh);
@@ -92,12 +94,15 @@ public class GParallelMerge extends RecursiveAction {
             GParallelMerge right = new GParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxLow + auxInd, auxHigh);
             left.fork();
             GPsortPmerge.countFork++;
+            left.getNode().changeColor();
+            right.getNode().setColor(this.getNode().getColor());
             edgeList.add(new Edge(this.getNode(), left.getNode()));
             right.compute();
             edgeList.add(new Edge(this.getNode(), right.getNode()));
             left.join();
             nodeJ = new Node(auxLow, auxHigh);
             nodeList.add(nodeJ);
+            this.getNodeJ().setColor(right.getNode().getColor());
 
             if (Objects.equals(left.getNodeJ(), null)){
                 edgeList.add(new Edge(left.getNode(), nodeJ));
