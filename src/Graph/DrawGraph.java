@@ -1,11 +1,11 @@
-package Bench;
+package Graph;
 
 import Graph.Edge;
 import Graph.Node;
 import java.io.*;
 import java.util.List;
 
-public class Utils {
+public class DrawGraph {
 
     /**
      * Scrive il file graph.graphml che può essere visualizzato su https://www.yworks.com/yed-live/
@@ -70,25 +70,5 @@ public class Utils {
                 new FileOutputStream("graphPP.graphml"), "utf-8"))) {
             writer.write(out);
         }
-    }
-
-    /**
-     * @param x   la chiave da cercare
-     * @param arr l'array in cui cercare
-     * @param l   indice low dell'array
-     * @param h   indice di high dell'array
-     * @return la posizione (inclusa) in cui gli elementi sono maggiori o uguali di x
-     */
-    public static int binarySearch(int x, int[] arr, int l, int h) {
-        int low = l;
-        int high = Math.max(l, h);
-        while (low < high) {
-            int mid = ((low + high) / 2);
-            if (x <= arr[mid])
-                high = mid;
-            else
-                low = mid + 1;
-        }
-        return high;
     }
 }

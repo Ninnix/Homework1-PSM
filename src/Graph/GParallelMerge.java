@@ -1,5 +1,7 @@
 package Graph;
 
+import Bench.Sorting;
+
 import java.util.*;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
@@ -88,7 +90,7 @@ public class GParallelMerge extends RecursiveAction {
         } **/
          else {
             int sxMed = (sxHigh + sxLow) / 2; //mediano sottoarray piu' grande
-            int dxInd = Bench.Utils.binarySearch(aux[sxMed], aux, dxLow, dxHigh); //posizione mediano sottoarray più piccolo
+            int dxInd = Sorting.binarySearch(aux[sxMed], aux, dxLow, dxHigh); //posizione mediano sottoarray più piccolo
             int auxInd = (sxMed - sxLow) + (dxInd - dxLow); //numero elementi (indice) piu' piccoli del sxMed
             GParallelMerge left = new GParallelMerge(array, sxLow, sxMed, dxLow, dxInd, aux, auxLow,auxLow + auxInd);
             GParallelMerge right = new GParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxLow + auxInd, auxHigh);

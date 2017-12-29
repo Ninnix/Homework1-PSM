@@ -1,8 +1,5 @@
 package Bench;
 
-import java.util.Arrays;
-import static java.lang.System.out;
-
 public class Sorting {
 
     /**
@@ -55,4 +52,23 @@ public class Sorting {
         }
     }
 
+    /**
+     * @param x   la chiave da cercare
+     * @param arr l'array in cui cercare
+     * @param l   indice low dell'array
+     * @param h   indice di high dell'array
+     * @return la posizione (inclusa) in cui gli elementi sono maggiori o uguali di x
+     */
+    public static int binarySearch(int x, int[] arr, int l, int h) {
+        int low = l;
+        int high = Math.max(l, h);
+        while (low < high) {
+            int mid = ((low + high) / 2);
+            if (x <= arr[mid])
+                high = mid;
+            else
+                low = mid + 1;
+        }
+        return high;
+    }
 }

@@ -120,7 +120,7 @@ public class Main {
         GPsortSmerge graphSort = new GPsortSmerge(array, low, high);
         GPsortSmerge.fjPool.invoke(graphSort);
         try {
-            Utils.graphWrite(GPsortSmerge.nodeList, GPsortSmerge.edgeList);
+            DrawGraph.graphWrite(GPsortSmerge.nodeList, GPsortSmerge.edgeList);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,7 +140,7 @@ public class Main {
         GPsortPmerge graphSort2 = new GPsortPmerge(array, low, high, aux);
         GPsortPmerge.fjPool.invoke(graphSort2);
         try {
-            Utils.graphWrite2(GPsortPmerge.nodeList, GPsortPmerge.edgeList);
+            DrawGraph.graphWrite2(GPsortPmerge.nodeList, GPsortPmerge.edgeList);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -67,7 +67,7 @@ public class ParallelMerge extends RecursiveAction {
         }
         else {
             int sxMed = (sxHigh + sxLow) / 2; //mediano sottoarray piu' grande
-            int dxInd = Utils.binarySearch(aux[sxMed], aux, dxLow, dxHigh); //posizione mediano sottoarray più piccolo
+            int dxInd = Sorting.binarySearch(aux[sxMed], aux, dxLow, dxHigh); //posizione mediano sottoarray più piccolo
             int auxInd = (sxMed - sxLow) + (dxInd - dxLow); //numero elementi (indice) piu' piccoli del sxMed
             ParallelMerge left = new ParallelMerge(array, sxLow, sxMed, dxLow, dxInd, aux, auxLow,auxLow + auxInd);
             ParallelMerge right = new ParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxLow + auxInd, auxHigh);
