@@ -51,7 +51,7 @@ public class GPsortSmerge extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if ((high-low) <= 1) return;  //caso base per cutoff > 1
+        if ((high-low) <= 1) return;  //caso base per cutoff = 1
         /**
         if ((high - low) < SEQUENTIAL_CUTOFF){
             Sorting.insectionSort(array, low, high);

@@ -67,7 +67,7 @@ public class GParallelMerge extends RecursiveAction {
             lenSx = lenDx;
             lenDx = appoggio;
         }
-        //caso base per cutoff > 1
+        //caso base per cutoff = 1
         if (lenSx == 1 && lenDx == 1) {
             if (aux[sxLow] <= aux[dxLow]) {
                 array[auxLow] = aux[sxLow];
