@@ -33,19 +33,12 @@ public class Main {
         else {
             throw new IllegalArgumentException("Tipologia di input non corretta");
         }
-        //out.println(Arrays.toString(array)); // stampiamo l'array creata
         int[] a1 = array;                 //array del mergesort sequenziale
         int[] a2 = new int[array.length]; //array del mergesort parallelo con funzione di merge seriale
         System.arraycopy( array, 0, a2, 0, array.length );
         int[] a3 = new int[array.length]; //array del mergesort parallelo
         System.arraycopy( array, 0, a3, 0, array.length );
         if (graphMode == false) {
-            //benchS(a1,0, a1.length);
-            //benchPS(a2, 0, a2.length);
-            //benchPP(a3, 0, a3.length);
-            //multiS(a1, 0, a1.length);
-            //multiPS(a2, 0, a2.length);
-            //multiPP(a3, 0, a3.length);
             speedup(a1, 0, a1.length);
 
         } else {
@@ -56,10 +49,11 @@ public class Main {
     }
 
     /**
-     * Stampa il tempo di esecuzione del mergesort sequenziale sull'array di input
-     * @param array
-     * @param low
-     * @param high
+     * stampa su schermo il tempo di esecuzione del mergesort seriale
+     * @param array array da ordinare
+     * @param low indice di partenza (incluso)
+     * @param high indice di fine (escluso)
+     * @return il tempo di esecuzione del mergesort seriale sulla porzione di array (low, high)
      */
     static long benchS(int[]array, int low, int high){
         long inizio = System.currentTimeMillis();
@@ -73,10 +67,12 @@ public class Main {
     }
 
     /**
-     * Stampa il tempo di esecuzione del mergesort parallelo con funzione di merge sequenziale, sull'array di input
-     * @param array
-     * @param low
-     * @param high
+     * Stampa il tempo di esecuzione del mergesort parallelo con funzione di merge seriale
+     * @param array array da ordinare
+     * @param low indice di inizio
+     * @param high indice di fine (escluso)
+     * @return il tempo di esecuzione dell'algoritmo di mergesort parallelo
+     * con funzione di merge seriale
      */
     static long benchPS(int[]array, int low, int high){
         PsortSmerge sort = new PsortSmerge(array, low, high);
@@ -91,10 +87,11 @@ public class Main {
     }
 
     /**
-     * Stampa il tempo di esecuzione del mergesort parallelo con funzione di merge parallela, sull'array di input
-     * @param array
-     * @param low
-     * @param high
+     * Stampa su schermo il tempo di esecuzione del mergesort totalmente parallelo
+     * @param array array da ordinare
+     * @param low indice inizio
+     * @param high indice fine (escluso)
+     * @return il tempo di esecuzione
      */
     static  long benchPP(int[]array, int low, int high){
         int[] aux = new int[array.length];
@@ -214,9 +211,9 @@ public class Main {
 
     /**
      * Crea il DAG del mergesort paralleo con funzione di merge sequenziale
-     * @param array
-     * @param low
-     * @param high
+     * @param array array da ordinare e su cui creare il DAG
+     * @param low indice di partenza
+     * @param high indice di fine(escluso)
      */
     static void graphPS (int[] array, int low, int high){
         GPsortSmerge graphSort = new GPsortSmerge(array, low, high);
@@ -233,9 +230,9 @@ public class Main {
 
     /**
      * Crea il DAG del mergesort paralleo con funzione di merge parallela
-     * @param array
-     * @param low
-     * @param high
+     * @param array array da ordinare
+     * @param low indice di inizio
+     * @param high indice di fine(escluso)
      */
     static void graphPP (int[] array, int low, int high) {
         int[] aux = new int[array.length];
@@ -252,9 +249,9 @@ public class Main {
     }
 
     /**
-     * Verifica che l'ordinamento sia corretto, ovvero che rispetta l’ordine crescente
-     * @param array
-     * @return
+     * Verifica che l'ordinamento sia corretto, ovvero che rispetti l’ordine crescente
+     * @param array array da ordinare
+     * @return true se è ordinato, false altrimenti
      */
     static boolean check(int[] array) {
         boolean ans = true;

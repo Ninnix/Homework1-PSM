@@ -18,8 +18,8 @@ public class GParallelMerge extends RecursiveAction {
     private int auxLow;
     private int auxHigh;
     private static int SEQUENTIAL_CUTOFF = 1;
-    private Node node;
-    private Node nodeJ;
+    private Node node; //nodo attuale
+    private Node nodeJ; //nodo di join
     public List<Node> nodeList = GPsortPmerge.nodeList;
     public List<Edge> edgeList = GPsortPmerge.edgeList;
 
@@ -82,29 +82,45 @@ public class GParallelMerge extends RecursiveAction {
             array[auxLow] = aux[sxLow];
             return;
         }
+
         //caso base per cutoff > 1
-        /**
+        /*
         if (lenSx < SEQUENTIAL_CUTOFF) {
             Sorting.serialMerge2(array,sxLow,sxHigh,dxLow,dxHigh,aux,auxLow,auxHigh);
             return;
-        } **/
+        } */
+
          else {
             int sxMed = (sxHigh + sxLow) / 2; //mediano sottoarray piu' grande
-            int dxInd = Sorting.binarySearch(aux[sxMed], aux, dxLow, dxHigh); //posizione mediano sottoarray più piccolo
+            int dxInd = Sorting.binarySearch(aux[sxMed], aux, dxLow, dxHigh); //posizione mediano nel sottoarray di destra
             int auxInd = (sxMed - sxLow) + (dxInd - dxLow); //numero elementi (indice) piu' piccoli del sxMed
             GParallelMerge left = new GParallelMerge(array, sxLow, sxMed, dxLow, dxInd, aux, auxLow,auxLow + auxInd);
             GParallelMerge right = new GParallelMerge(array, sxMed, sxHigh, dxInd, dxHigh, aux, auxLow + auxInd, auxHigh);
+            //cambiamo colore al figlio sinistro
             left.getNode().changeColor();
+            //settiamo lo stesso colore al figlio destro
             right.getNode().setColor(this.getNode().getColor());
             left.fork();
-            GPsortPmerge.countFork++;
+            //accesso sincronizzato a countFork
+            synchronized (GPsortPmerge.semaphore){
+                GPsortPmerge.countFork++;
+            }
+            //aggiunto arco figlio sinistro
             edgeList.add(new Edge(this.getNode(), left.getNode()));
+            //thread halving
             right.compute();
+            //aggiunta arco figlio destro
             edgeList.add(new Edge(this.getNode(), right.getNode()));
             left.join();
             nodeJ = new Node(auxLow, auxHigh);
             nodeList.add(nodeJ);
+            //setto al nodo di join lo stesso colore del nodo attuale
             this.getNodeJ().setColor(right.getNode().getColor());
+
+            /*
+            aggiunta degli archi dal figlio destro e di sinistra al nodo di join
+            facendo attenzione al caso in cui uno dei figli o entrambi siano delle foglie
+             */
 
             if (Objects.equals(left.getNodeJ(), null)){
                 edgeList.add(new Edge(left.getNode(), nodeJ));

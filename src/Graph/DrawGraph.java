@@ -29,6 +29,11 @@ public class DrawGraph {
                 "</graphml>\n";
     }
 
+    /**
+     * Trasforma una lista di oggetti di tipo node in una stringa di tipo xml
+     * @param nodes Una lista di node
+     * @return Una stringa per ogni nodo
+     */
     public static String nodeToString(List<Node> nodes) {
         String out = "";
         for (Node node:nodes) {
@@ -48,6 +53,11 @@ public class DrawGraph {
         return out;
     }
 
+    /**
+     * Trasforma una lista di archi in una stringa xml
+     * @param edges
+     * @return
+     */
     public static String edgeToString(List<Edge> edges) {
         String out = "";
         for (Edge edge:edges) {
@@ -56,6 +66,12 @@ public class DrawGraph {
         return out;
     }
 
+    /**
+     * Scrittura del DAG del mergesort parallelo con funzione di merge seriale
+     * @param nodes
+     * @param edges
+     * @throws IOException
+     */
     public static void graphWrite(List<Node> nodes, List<Edge> edges) throws IOException {
         String out = graphToString(nodes, edges);
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
@@ -64,6 +80,12 @@ public class DrawGraph {
         }
     }
 
+    /**
+     * Scrittura del DAG del mergesort parallelo
+     * @param nodes
+     * @param edges
+     * @throws IOException
+     */
     public static void graphWrite2(List<Node> nodes, List<Edge> edges) throws IOException {
         String out = graphToString(nodes, edges);
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(

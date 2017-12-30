@@ -16,6 +16,9 @@ public class PsortSmerge extends RecursiveAction {
     private int high;
     private int SEQUENTIAL_CUTOFF = 512;
 
+
+
+
     public PsortSmerge(int[] arr, int l, int h) {
         array = arr;
         low = l;
@@ -24,17 +27,21 @@ public class PsortSmerge extends RecursiveAction {
 
     @Override
     protected void compute() {
-        //if ((high-low) <= 1) return;
-        if ((high - low) < SEQUENTIAL_CUTOFF){
-            Sorting.insectionSort(array, low, high);
+
+        //caso base
+        if ((high - low) <= SEQUENTIAL_CUTOFF){
+            if (SEQUENTIAL_CUTOFF == 1) return;
+            Sorting.inserctionSort(array, low, high);
         }
         else {
             int mid = (low + high) / 2;
             PsortSmerge left = new PsortSmerge(array, low, mid);
             PsortSmerge right = new PsortSmerge(array, mid, high);
             left.fork();
+            //thread halving
             right.compute();
             left.join();
+            //fusione di left e right
             MergeSort.serialMerge(array, low, mid, high);
         }
     }

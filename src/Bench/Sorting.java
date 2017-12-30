@@ -3,11 +3,12 @@ package Bench;
 public class Sorting {
 
     /**
+     * Algoritmo di ordinaemnto Inserctionsort
      * @param array
      * @param low
      * @param high
      */
-    public static void insectionSort(int[] array, int low, int high) {
+    public static void inserctionSort(int[] array, int low, int high) {
         for (int i = low; i < high; i++) {
             int x = i;
             int j = i - 1;
@@ -22,6 +23,19 @@ public class Sorting {
         }
     }
 
+    /**
+     * Versione modificata della funzione di merge tipica del mergesort che verifica gli
+     * elementi dall'array ausiliario e scrive, dalla posizione auxL gli elementi
+     * nell'array di input
+     * @param array array in cui scrivere gl elementi ordinati
+     * @param low indice inferiore prima porzione (incluso)
+     * @param lmiddle indice superiore prima porzione (escluso)
+     * @param rMiddle indice inferiore seconda porzione (Incluso)
+     * @param high indice superiore seconda porzione (escluso)
+     * @param aux posizione da cui scrivere in array (inclusa)
+     * @param auxL ultima posizione in cui scrivere gli elementi (esclusa)
+     * @param auxH array in cui verificare gli elementi
+     */
     public static void serialMerge2(int[] array, int low, int lmiddle, int rMiddle, int high, int[] aux, int auxL, int auxH) {
 
         int left = low;
